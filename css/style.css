@@ -1,2 +1,76 @@
 @import url('reset.css');
 @import url('font.css');
+
+main{
+    width: 1920px;
+    height: 1080px;
+    background-color: #FFEE5A;
+    display: flex;
+    flex-direction: column;
+    div{
+        width: 100%;
+        height: calc(100%/4);
+    }
+}
+.first-section{
+    background-color: black;
+}
+.second-section{
+    overflow: hidden;
+    display: grid;
+}
+.circle{
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    border: 1px solid black;
+    
+}
+.third-section{
+    background-color: black;
+    overflow: hidden;
+    position: relative;
+}
+.circle-ts{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background-color: #FFEE5A;
+}
+.forth-section{
+    position: relative;
+    overflow: hidden;
+}
+.small-circle{
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: black;
+    z-index: 1;
+}
+.numbers{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    padding: 70px 160px;
+    gap: 20px;
+    div{
+        width: 134px;
+        height: 116px;
+        background-color: #FFEE5A;
+        border-top: 7px;
+        border-right:14px;
+        border-bottom: 19px;
+        border-left: 7px;
+        border-color: black;
+        border-style: solid;
+        font-size: 85px;
+        display: flex;
+        font-family: "IBM Plex Mono";
+        align-items: center;
+        justify-content: center;
+    }
+}
