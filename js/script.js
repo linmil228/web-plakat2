@@ -83,4 +83,72 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     generateSmallCircles();
+
+    const barcode = document.querySelector('[data-js = "barcode-container"]');   
+    const barCount = 40;
+    const minWidth = 3;
+    const maxWidth = 130; 
+    const minGap = 5;
+    const maxGap = 40;
+
+    function random(min, max){
+        return Math.floor(Math.random()*(max-min+1))+min;
+    }
+
+    function generateBars(){
+        for(let i = 0; i<barCount;i++){
+            const bar = document.createElement("div");
+            bar.classList.add("bar");
+            updateBar(bar);
+
+            barcode.appendChild(bar);
+        }
+    }
+    function updateBar(bar){
+        const widthBar = random(minWidth,maxWidth);
+        const gapBar = random(minGap, maxGap);
+
+        bar.style.width = `${widthBar}px`
+        bar.style.marginRight = `${gapBar}px`
+    }
+    function randomUpdate(){
+        const bars = document.querySelectorAll(".bar");
+        bars.forEach(bar =>{
+            const shouldChange = Math.random()>0.3;
+            if (shouldChange){
+                updateBar(bar);
+            }
+        })
+    }
+    generateBars();
+    
+    setInterval(() => {
+        randomUpdate();
+    }, 700);
+
+    const ContainerOfCircles = document.querySelector('[data-js = "numbers-container"]');
+    const sizeNC = 9;
+    const stepNC = 25;
+
+    function generateSmallCirclesNC(){
+        const widthNC = ContainerOfCircles.clientWidth;
+        const heightNC = ContainerOfCircles.clientHeight;
+
+        const chessRowsNC = Math.ceil(heightNC/stepNC);
+        const chessColsNC = Math.ceil(widthNC/stepNC);
+
+        for (let rowNC = 0; rowNC<chessRowsNC; rowNC++){
+            for (let colNC=0; colNC<chessColsNC;colNC++){
+                const circleNC = document.createElement("div");
+                circleNC.classList.add("small-circle-NC");
+                const offsetXNC = (rowNC%2===0) ? 0 : stepNC / 2;
+                const xNC = colNC*stepNC+offsetXNC;
+                const yNC = rowNC*stepNC;
+                circleNC.style.left = `${xNC-sizeNC/2}px`
+                circleNC.style.top = `${yNC-sizeNC/2}px`
+                ContainerOfCircles.appendChild(circleNC);
+            }
+        }
+    }
+    generateSmallCirclesNC();
 });

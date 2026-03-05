@@ -1,49 +1,87 @@
 @import url('reset.css');
 @import url('font.css');
 
-main{
-    width: 100%; 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 100%;
     max-width: 1920px;
     height: 1080px;
     background-color: #FFEE5A;
     display: flex;
     flex-direction: column;
-    div{
+
+    div {
         width: 100%;
         height: calc(100%/4);
     }
 }
-.first-section{
+
+.first-section {
     background-color: black;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+    div {
+        height: 100%;
+        width: calc(100%/10);
+        position: relative;
+
+        img {
+            position: absolute;
+            width: 223px;
+            height: 333px;
+        }
+    }
 }
-.second-section{
+
+.up {
+    top: -50%;
+}
+
+.down {
+    top: 30%;
+}
+
+.second-section {
     overflow: hidden;
     display: grid;
 }
-.circle{
+
+.circle {
     width: 37px;
     height: 37px;
     border-radius: 50%;
     border: 1px solid black;
-    
+
 }
-.third-section{
+
+.third-section {
     background-color: black;
     overflow: hidden;
     position: relative;
 }
-.circle-ts{
+
+.circle-ts {
     position: absolute;
     width: 85px;
     height: 85px;
     border-radius: 50%;
     background-color: #FFEE5A;
 }
-.forth-section{
+
+.forth-section {
     position: relative;
     overflow: hidden;
 }
-.small-circle{
+
+.small-circle {
     position: absolute;
     width: 13px;
     height: 13px;
@@ -51,19 +89,21 @@ main{
     background-color: black;
     z-index: 1;
 }
-.numbers{
+
+.numbers {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: row;
     padding: 70px 160px;
     gap: 20px;
-    div{
+
+    div {
         width: 134px;
         height: 116px;
         background-color: #FFEE5A;
         border-top: 7px;
-        border-right:14px;
+        border-right: 14px;
         border-bottom: 19px;
         border-left: 7px;
         border-color: black;
@@ -74,4 +114,301 @@ main{
         align-items: center;
         justify-content: center;
     }
+}
+
+.wave-right {
+    width: 1844px;
+    height: 1033px;
+    position: absolute;
+    z-index: 10;
+    top: 14%;
+    left: -3%;
+}
+
+.wave-left {
+    width: 1844px;
+    height: 1033px;
+    position: absolute;
+    z-index: 10;
+    top: 12%;
+    transform: scaleX(-1);
+    left: 8%;
+    rotate: 5deg;
+}
+
+.second-screen {
+    width: 100%;
+    max-width: 1920px;
+    height: 1080px;
+    background-color: #FFEE5A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.barcode {
+    width: 95%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    background: black;
+}
+
+.container-umbrella {
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 32%;
+}
+
+.first-umbrella {
+    position: absolute;
+}
+
+.second-umbrella {
+    position: absolute;
+    left: 14%;
+    top: 6%;
+    rotate: -25deg;
+}
+
+.third-umbrella {
+    position: absolute;
+    left: 32%;
+    top: 11%;
+    rotate: -4deg;
+}
+
+.forth-umbrella {
+    position: absolute;
+    left: 52%;
+    top: 9%;
+    rotate: -14deg;
+}
+
+.fifth-umbrella {
+    position: absolute;
+    left: 72%;
+    rotate: -22deg;
+}
+
+.numbers-container {
+    position: absolute;
+    background-color: #FFEE5A;
+    rotate: -2deg;
+    top: 55%;
+    left: 2%;
+    width: 1820px;
+    height: 771px;
+    border-radius: 27px;
+    border-color: black;
+    border-style: solid;
+    border-width: 7px 27px 19px 7px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-in {
+    display: flex;
+    flex-direction: row;
+    gap: 167px;
+    width: fit-content;
+    height: fit-content;
+    z-index: 10;
+    align-items: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+}
+
+.calculator-first-container {
+    display: inline-grid;
+    column-gap: 24px;
+    row-gap: 32px;
+    grid-template-rows: repeat(3, fit-content(100%));
+    grid-template-columns: repeat(3, fit-content(100%));
+}
+
+.calculator-first {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px;
+    height: 97px;
+    background-color: white;
+    font-size: 72px;
+    font-family: "IBM Plex Mono";
+    font-weight: 400;
+    padding: 45px;
+    border-color: black;
+    border-style: solid;
+    border-width: 6px 12px 16px 6px;
+}
+
+.zero {
+    display: flex;
+    align-items: center;
+    width: 266px;
+    height: 97px;
+    background-color: white;
+    font-size: 72px;
+    font-family: "IBM Plex Mono";
+    font-weight: 400;
+    padding: 45px;
+    border-color: black;
+    border-style: solid;
+    border-width: 6px 12px 16px 6px;
+}
+
+.dollars {
+    width: 861px;
+    height: 627px;
+    border: 17px solid black;
+    border-radius: 47px;
+    background-color: white;
+    padding: 17px;
+}
+
+.third-screen {
+    width: 100%;
+    max-width: 1920px;
+    height: 1080px;
+    background-color: #FFEE5A;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.small-circle-NC {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: black;
+    z-index: 1;
+}
+
+.background-drawing {
+    position: absolute;
+    top: 28%;
+    z-index: 2;
+}
+
+.forth-screen {
+    width: 100%;
+    max-width: 1920px;
+    height: 1080px;
+    background-color: #FFEE5A;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.first-figure {
+    position: absolute;
+    top: 52%;
+    left: -20%;
+    z-index: 2;
+    transform-origin: center;
+    animation: swing 2s infinite ease-in-out;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.second-figure {
+    position: absolute;
+    top: 27%;
+    left: -11%;
+    z-index: 2;
+    transform-origin: center;
+    animation: swing2 2s infinite ease-in-out;
+}
+@keyframes swing2 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.third-figure {
+    position: absolute;
+    top: 23%;
+    left: 31%;
+    z-index: 2;
+    transform-origin: center;
+    animation: swing 2s infinite ease-in-out;
+}
+
+.brushes {
+    height: 98%;
+    width: 12%;
+    background-color: #878787;
+    border-radius: 10px;
+    padding: 19px 1px;
+    position: absolute;
+    top: 33%;
+    left: 2%;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 49px;
+    align-items: center;
+}
+
+.brush {
+    background-color: white;
+    width: 165px;
+    height: 165px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
