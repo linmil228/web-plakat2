@@ -139,7 +139,7 @@ main {
 .second-screen {
     width: 100%;
     max-width: 1920px;
-    height: 1080px;
+    height: 1400px;
     background-color: #FFEE5A;
     display: flex;
     flex-direction: column;
@@ -164,7 +164,7 @@ main {
     width: 100%;
     height: fit-content;
     position: absolute;
-    top: 32%;
+    top: 22%;
 }
 
 .first-umbrella {
@@ -202,7 +202,7 @@ main {
     position: absolute;
     background-color: #FFEE5A;
     rotate: -2deg;
-    top: 55%;
+    top: 40%;
     left: 2%;
     width: 1820px;
     height: 771px;
@@ -214,6 +214,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .container-in {
@@ -289,6 +290,7 @@ main {
     flex-direction: row;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 .small-circle-NC {
@@ -302,8 +304,9 @@ main {
 
 .background-drawing {
     position: absolute;
-    top: 28%;
+    top: -4%;
     z-index: 2;
+    left: -1%;
 }
 
 .forth-screen {
@@ -319,7 +322,6 @@ main {
 
 .first-figure {
     position: absolute;
-    top: 52%;
     left: -20%;
     z-index: 2;
     transform-origin: center;
@@ -350,7 +352,6 @@ main {
 
 .second-figure {
     position: absolute;
-    top: 27%;
     left: -11%;
     z-index: 2;
     transform-origin: center;
@@ -380,7 +381,6 @@ main {
 
 .third-figure {
     position: absolute;
-    top: 23%;
     left: 31%;
     z-index: 2;
     transform-origin: center;
@@ -388,7 +388,6 @@ main {
 }
 
 .brushes {
-    height: 98%;
     width: 12%;
     background-color: #878787;
     border-radius: 10px;
@@ -401,6 +400,7 @@ main {
     flex-direction: column;
     gap: 49px;
     align-items: center;
+    top: 0;
 }
 
 .brush {
@@ -411,4 +411,92 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.tape{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    overflow: hidden;
+    font-family: "IBM Plex Mono";
+    font-size: 29px;
+    font-weight: 100;
+    width: 100%;
+    height: max-content;
+    position: absolute;
+    top: 0;
+}
+.info-track{
+    width: 328px;
+    height: 185px;
+    display: flex;
+    flex-direction: column;
+    font-family: "IBM Plex Mono";
+    font-size: 19px;
+    border: 3px black solid;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: white;
+    position: absolute;
+    left: 2%;
+    top: 5%;
+    z-index: 10;
+}
+.counter-qrcode{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.truck{
+    position: absolute;
+    top: 43%;
+    left: 30%;
+    z-index: 10;
+}
+.snow-container{
+    width: 100%;
+    height: 1050px;
+    position: relative;
+    top: 1%;
+    overflow: hidden;
+    z-index: 1;
+}
+.snow{
+    position: absolute;
+    width: 90px;
+    height: 71px;
+}
+.left-wheel{
+    position: absolute;
+    top: 83%;
+    left: 40%;
+}
+.right-wheel{
+    position: absolute;
+    top: 83%;
+    left: 80%;
+}
+.spin-left{
+    animation: spin 0.5s linear infinite;
+}
+@keyframes spin{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+footer{
+    background-color: black;
+    width: 100%;
+    height: 118px;
+    display: flex;
+    flex-direction: row;
+    gap: 39px;
+    padding-left: 25px;
+    align-items: center;
+    img{
+        height: fit-content;
+    }
 }

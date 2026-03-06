@@ -151,4 +151,60 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     generateSmallCirclesNC();
+
+    const snowContainer = document.querySelector('[data-js = "fallen-snow"]');
+    const wheels = document.querySelectorAll('[data-js = "wheel"]');
+    let shiftPressed = false;
+    document.addEventListener("keydown", (e) => {
+        if(e.key === 'Control'){
+            shiftPressed = true;
+
+            wheels.forEach(wheel => {
+                wheel.classList.add("spin-left");
+            });
+        }
+    });
+    document.addEventListener("keyup", (e) => {
+        if(e.key === 'Control'){
+            shiftPressed = false;
+
+            wheels.forEach(wheel => {
+                wheel.classList.remove("spin-left");
+            });
+        }
+    });
+    function createSnow() {
+        const snow = document.createElement("img");
+        snow.src="assets/photo/snowPic.svg";
+        snow.className = "snow";
+        const snowContainerWidth = snowContainer.offsetWidth;
+        const snowContainerHeight = snowContainer.offsetHeight;
+        let xSNOW = Math.random()* snowContainerWidth;
+        let ySNOW = -30;
+        snow.style.left = `${xSNOW}px`
+        snow.style.top = `${ySNOW}px`
+        const rotate = Math.random()*360;
+        snow.style.transform = `rotate(${rotate}deg)`
+        snowContainer.appendChild(snow);
+        let speedSNOW = 2 + Math.random()*2;
+        // let angle = shiftPressed ? -45 : 90;
+        // let vx = Math.cos(angle*Math.PI/180)*speedSNOW;
+        // let vy = Math.sin(angle*Math.PI/180)*speedSNOW;
+
+        function fall(){
+            let vx = shiftPressed ? speedSNOW : 0;
+            let vy = speedSNOW;
+            xSNOW+=vx;
+            ySNOW+=vy;
+            snow.style.left = `${xSNOW}px`
+            snow.style.top = `${ySNOW}px`
+            if (ySNOW > snowContainerHeight || xSNOW>snowContainerWidth){
+                snow.remove();
+                return;
+            }
+            requestAnimationFrame(fall);
+        }
+        requestAnimationFrame(fall);
+    }
+    setInterval(createSnow, 300);
 });
