@@ -24,7 +24,7 @@
         </div>
         <div class="second-section" data-js="second-circle-container"></div>
         <div class="third-section" data-js="third-circle-container"></div>
-        <div class="forth-section" data-js="fourth-circle-container">
+        <div class="forth-section">
             <div class="numbers">
                 <div>1</div>
                 <div>2</div>
@@ -37,8 +37,8 @@
                 <div>9</div>
             </div>
         </div>
-        <img src="assets/photo/wave.svg" class="wave-right">
-        <img src="assets/photo/wave.svg" class="wave-left">
+        <img src="assets/photo/wave.svg" class="wave-right" data-js="wave-right">
+        <img src="assets/photo/wave2.svg" class="wave-left" data-js="wave-left">
     </main>
     <div class="second-screen">
         <div class="barcode" data-js="barcode-container"></div>
@@ -53,15 +53,15 @@
             <div class="container-in">
                 <div class="calculator">
                     <div class="calculator-first-container">
-                        <div class="calculator-first">1</div>
-                        <div class="calculator-first">2</div>
-                        <div class="calculator-first">3</div>
-                        <div class="calculator-first">4</div>
-                        <div class="calculator-first">5</div>
-                        <div class="calculator-first">6</div>
-                        <div class="calculator-first">7</div>
-                        <div class="calculator-first">8</div>
-                        <div class="calculator-first">9</div>
+                        <div class="calculator-first" data-js="calculator1">1</div>
+                        <div class="calculator-first" data-js="calculator2">2</div>
+                        <div class="calculator-first" data-js="calculator3">3</div>
+                        <div class="calculator-first" data-js="calculator4">4</div>
+                        <div class="calculator-first" data-js="calculator5">5</div>
+                        <div class="calculator-first" data-js="calculator6">6</div>
+                        <div class="calculator-first" data-js="calculator7">7</div>
+                        <div class="calculator-first" data-js="calculator8">8</div>
+                        <div class="calculator-first" data-js="calculator9">9</div>
                     </div>
                     <div class="zero">0</div>
                 </div>
@@ -70,17 +70,19 @@
         </div>
     </div>
     <div class="third-screen">
+        <div class="popbar" data-js="popbar" hiddens></div>
         <div class="brushes">
-            <div class="brush"><img src="assets/photo/brush1.svg"></div>
-            <div class="brush"><img src="assets/photo/brush2.svg"></div>
-            <div class="brush"><img src="assets/photo/brush3.svg"></div>
-            <div class="brush"><img src="assets/photo/brush4.svg"></div>
-            <div class="brush"><img src="assets/photo/brush5.svg"></div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush1.svg" data-js="brush"></div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush2.svg" data-js="brush"></div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush3.svg" data-js="brush"></div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush4.svg" data-js="brush"></div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush5.svg" data-js="brush"></div>
         </div>
         <img src="assets/photo/figure1.svg" class="second-figure">
         <img src="assets/photo/figure2.svg" class="first-figure">
         <img src="assets/photo/figure2.svg" class="third-figure">
-        <img src="assets/photo/backgroundForDrawing.svg" class="background-drawing">
+        <div class="background-drawing"></div>
+        <div class="canvas" data-js="canvas"></div>
     </div>
     <div class="forth-screen">
         <div class="tape">
@@ -132,18 +134,36 @@
             <p>QR-коды упрощают дистрибьюторам учёт товара, контроль поставок и запуск маркетинга.</p>
             <div class="counter-qrcode">
                 <p>Найдено qr-кодов:</p>
-                <p>0</p>
+                <p data-js="counter-pack">0</p>
             </div>
         </div>
         <div class="truck">
             <img src="assets/photo/car.svg">
+            <div class="speed-counter">
+                <p data-js="speed-counter">0</p>
+                <p>км/ч</p>
+            </div>
+        </div>
+        <div class="qrcodes">
+            <img src="assets/photo/borderQr1.svg" class="qrcode1">
+            <img src="assets/photo/qrcode.svg" class="qrcode1" data-js="qrcode" hidden>
+            <img src="assets/photo/borderQr1.svg" class="qrcode2">
+            <img src="assets/photo/qrcode.svg" class="qrcode2" data-js="qrcode" hidden>
+            <img src="assets/photo/borderQr1.svg" class="qrcode3">
+            <img src="assets/photo/qrcode.svg" class="qrcode3" data-js="qrcode" hidden>
+            <img src="assets/photo/borderQr1.svg" class="qrcode4">
+            <img src="assets/photo/qrcode.svg" class="qrcode4" data-js="qrcode" hidden>
+            <img src="assets/photo/borderQr1.svg" class="qrcode5">
+            <img src="assets/photo/qrcode.svg" class="qrcode5" data-js="qrcode" hidden>
+            <img src="assets/photo/borderQr1.svg" class="qrcode6">
+            <img src="assets/photo/qrcode.svg" class="qrcode6" data-js="qrcode" hidden>
         </div>
         <img src="assets/photo/wheel.svg" class="left-wheel" data-js="wheel">
         <img src="assets/photo/wheel.svg" class="right-wheel" data-js="wheel">
     </div>
     <footer>
-        <img src="assets/photo/name.svg">
-        <img src="assets/photo/hse.svg">
+        <img src="assets/photo/name.svg" class="name">
+        <img src="assets/photo/hse.svg" class="hse">
     </footer>
     <script src="js/script.js" defer></script>
 </body>

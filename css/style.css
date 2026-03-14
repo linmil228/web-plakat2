@@ -7,6 +7,13 @@
     padding: 0;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    align-items: center;
+}
+
 main {
     width: 100%;
     max-width: 1920px;
@@ -14,11 +21,8 @@ main {
     background-color: #FFEE5A;
     display: flex;
     flex-direction: column;
-
-    div {
-        width: 100%;
-        height: calc(100%/4);
-    }
+    position: relative;
+    overflow-x: clip;
 }
 
 .first-section {
@@ -27,6 +31,9 @@ main {
     display: flex;
     flex-direction: row;
     gap: 5px;
+    width: 100%;
+    height: 100%;
+    position: relative;
 
     div {
         height: 100%;
@@ -52,11 +59,13 @@ main {
 .second-section {
     overflow: hidden;
     display: grid;
+    width: 100%;
+    height: 100%;
 }
 
 .circle {
-    width: 37px;
-    height: 37px;
+    width: 100% !important;
+    height: 100% !important;
     border-radius: 50%;
     border: 1px solid black;
 
@@ -66,6 +75,8 @@ main {
     background-color: black;
     overflow: hidden;
     position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .circle-ts {
@@ -79,6 +90,13 @@ main {
 .forth-section {
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/photo/bg-4s.svg);
+    background-size: cover;
+
 }
 
 .small-circle {
@@ -95,8 +113,8 @@ main {
     z-index: 2;
     display: flex;
     flex-direction: row;
-    padding: 70px 160px;
     gap: 20px;
+    align-items: center;
 
     div {
         width: 134px;
@@ -123,6 +141,7 @@ main {
     z-index: 10;
     top: 14%;
     left: -3%;
+    animation: waveMove 6s ease-in-out infinite;
 }
 
 .wave-left {
@@ -134,6 +153,7 @@ main {
     transform: scaleX(-1);
     left: 8%;
     rotate: 5deg;
+    animation: waveMove2 6s ease-in-out infinite;
 }
 
 .second-screen {
@@ -145,6 +165,7 @@ main {
     flex-direction: column;
     align-items: center;
     position: relative;
+    overflow-x: clip;
 }
 
 .barcode {
@@ -153,6 +174,7 @@ main {
     display: flex;
     align-items: center;
     overflow: hidden;
+    justify-content: space-between;
 }
 
 .bar {
@@ -165,10 +187,12 @@ main {
     height: fit-content;
     position: absolute;
     top: 22%;
+    left: 1.5%;
 }
 
 .first-umbrella {
     position: absolute;
+    animation: shake 3s ease-in-out infinite;
 }
 
 .second-umbrella {
@@ -176,6 +200,7 @@ main {
     left: 14%;
     top: 6%;
     rotate: -25deg;
+    animation: shake 3s ease-in-out infinite;
 }
 
 .third-umbrella {
@@ -183,6 +208,7 @@ main {
     left: 32%;
     top: 11%;
     rotate: -4deg;
+    animation: shake 3s ease-in-out infinite;
 }
 
 .forth-umbrella {
@@ -190,12 +216,30 @@ main {
     left: 52%;
     top: 9%;
     rotate: -14deg;
+    animation: shake 3s ease-in-out infinite;
 }
 
 .fifth-umbrella {
     position: absolute;
     left: 72%;
     rotate: -22deg;
+    animation: shake 3s ease-in-out infinite;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
 }
 
 .numbers-container {
@@ -215,6 +259,8 @@ main {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background-image: url(../assets/photo/bg-calc.svg);
+    background-size: contain;
 }
 
 .container-in {
@@ -255,6 +301,7 @@ main {
     border-color: black;
     border-style: solid;
     border-width: 6px 12px 16px 6px;
+    cursor: pointer;
 }
 
 .zero {
@@ -270,6 +317,7 @@ main {
     border-color: black;
     border-style: solid;
     border-width: 6px 12px 16px 6px;
+    cursor: pointer;
 }
 
 .dollars {
@@ -290,7 +338,7 @@ main {
     flex-direction: row;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 .small-circle-NC {
@@ -306,7 +354,10 @@ main {
     position: absolute;
     top: -4%;
     z-index: 2;
-    left: -1%;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/photo/backgroundForDrawing.svg);
+    background-size: cover;
 }
 
 .forth-screen {
@@ -322,7 +373,9 @@ main {
 
 .first-figure {
     position: absolute;
-    left: -20%;
+    width: 68.65%;
+    left: -15%;
+    top: 25%;
     z-index: 2;
     transform-origin: center;
     animation: swing 2s infinite ease-in-out;
@@ -352,11 +405,12 @@ main {
 
 .second-figure {
     position: absolute;
-    left: -11%;
+    width: 117%;
     z-index: 2;
     transform-origin: center;
     animation: swing2 2s infinite ease-in-out;
 }
+
 @keyframes swing2 {
     0% {
         transform: rotate(0deg);
@@ -381,7 +435,9 @@ main {
 
 .third-figure {
     position: absolute;
-    left: 31%;
+    left: 35%;
+    top: -10%;
+    width: 68.65%;
     z-index: 2;
     transform-origin: center;
     animation: swing 2s infinite ease-in-out;
@@ -411,8 +467,16 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
-.tape{
+.stamp {
+    width: 165px;
+    height: 165px;
+    position: absolute;
+    pointer-events: none;
+}
+
+.tape {
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -425,7 +489,8 @@ main {
     position: absolute;
     top: 0;
 }
-.info-track{
+
+.info-track {
     width: 328px;
     height: 185px;
     display: flex;
@@ -442,18 +507,21 @@ main {
     top: 5%;
     z-index: 10;
 }
-.counter-qrcode{
+
+.counter-qrcode {
     display: flex;
     flex-direction: row;
     gap: 8px;
 }
-.truck{
+
+.truck {
     position: absolute;
     top: 43%;
     left: 30%;
     z-index: 10;
 }
-.snow-container{
+
+.snow-container {
     width: 100%;
     height: 1050px;
     position: relative;
@@ -461,42 +529,973 @@ main {
     overflow: hidden;
     z-index: 1;
 }
-.snow{
+
+.snow {
     position: absolute;
     width: 90px;
     height: 71px;
 }
-.left-wheel{
+
+.left-wheel {
     position: absolute;
     top: 83%;
     left: 40%;
+    z-index: 10;
 }
-.right-wheel{
+
+.right-wheel {
     position: absolute;
     top: 83%;
     left: 80%;
+    z-index: 10;
 }
-.spin-left{
+
+.spin-left {
     animation: spin 0.5s linear infinite;
 }
-@keyframes spin{
+
+@keyframes spin {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(-360deg);
     }
 }
-footer{
+
+footer {
     background-color: black;
     width: 100%;
+    max-width: 1920px;
     height: 118px;
     display: flex;
     flex-direction: row;
     gap: 39px;
     padding-left: 25px;
     align-items: center;
-    img{
+    overflow: hidden;
+
+    img {
         height: fit-content;
+    }
+}
+
+.canvas {
+    width: 100%;
+    max-width: 1920px;
+    height: 1080px;
+    position: relative;
+    z-index: 3;
+}
+
+
+
+.qrcode1 {
+    position: absolute;
+    rotate: -15deg;
+    width: 182px;
+    height: 182px;
+    top: 11%;
+    left: 6%;
+}
+
+.qrcode2 {
+    position: absolute;
+    rotate: 18deg;
+    width: 133px;
+    height: 133px;
+    top: 61%;
+    left: 18%;
+}
+
+.qrcode3 {
+    position: absolute;
+    rotate: 3deg;
+    width: 150px;
+    height: 150px;
+    top: 15%;
+    left: 36%;
+}
+
+.qrcode4 {
+    position: absolute;
+    rotate: -23deg;
+    width: 150px;
+    height: 150px;
+    top: 59%;
+    left: 43%;
+}
+
+.qrcode5 {
+    position: absolute;
+    rotate: 38deg;
+    width: 116px;
+    height: 116px;
+    top: 19%;
+    left: 65%;
+}
+
+.qrcode6 {
+    position: absolute;
+    rotate: 57deg;
+    width: 148px;
+    height: 148px;
+    top: 50%;
+    left: 75%;
+    z-index: 10;
+}
+
+.qrcodes {
+    position: absolute;
+    top: 42%;
+    left: 52%;
+    z-index: 100;
+    width: 798px;
+    height: 480px;
+}
+.speed-counter{
+    width: 146px;
+    height: 49px;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    color: white;
+    gap: 20px;
+    position: absolute;
+    font-size: 28px;
+    font-family: 'IBM Plex Mono';
+    align-items: center;
+    justify-content: center;
+    top: 59%;
+    left: 20%;
+}
+.popbar{
+    position: absolute;
+    width: 377px;
+    height: 172px;
+    font-family: 'IBM Plex Mono';
+    font-size: 19px;
+    background-image: url(../assets/photo/popbar.svg);
+    z-index: 5;
+    pointer-events: none;
+}
+@keyframes waveMove{
+    0%{
+        transform: translateX(0px);
+    }
+    50%{
+        transform: translateX(40px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+@keyframes waveMove2{
+    0%{
+        transform: translateX(0px);
+    }
+    50%{
+        transform: translateX(-40px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+.wave-left.hide{
+    transform: translateX(-200%);
+    transition: transform 1.5s ease;
+}
+.wave-right.hide{
+    transform: translateX(200%);
+    transition: transform 1.5s ease;
+}
+@media (max-width: 1919px) {
+    .speed-counter{
+        width: 7.6vw;
+        height: 2.55vw;
+        font-size: 1.46vw;
+        gap: 1vw;
+    }
+    main {
+        height: 56.25vw;
+    }
+
+    .canvas {
+        height: 56.25vw
+    }
+
+    .first-section {
+        gap: 0.26vw;
+
+        div {
+            img {
+                width: 11.61vw;
+                height: 17.34vw;
+            }
+        }
+    }
+
+    .circle {
+        width: 1.93vw;
+        height: 1.93vw;
+    }
+
+    .circle-ts {
+        width: 4.43vw;
+        height: 4.43vw;
+    }
+
+    .small-circle {
+        width: 0.68vw;
+        height: 0.68vw;
+    }
+
+    .numbers {
+        padding: 3.65vw 8.33vw;
+        gap: 1.04vw;
+
+        div {
+            width: 6.98vw;
+            height: 6.04vw;
+            border: 0.36vw 0.73vw 0.99vw 0.36vw black solid;
+            font-size: 4.43vw;
+        }
+    }
+
+    .wave-right {
+        width: 96.04vw;
+        height: 53.8vw;
+    }
+
+    .wave-left {
+        width: 96.04vw;
+        height: 53.8vw;
+    }
+
+    .second-screen {
+        height: 72.92vw;
+    }
+
+    .barcode {
+        height: 23.44vw;
+    }
+
+    .container-umbrella {
+        img {
+            width: 26.25vw;
+            height: 24.77vw;
+        }
+    }
+
+    .numbers-container {
+        width: 94.79vw;
+        height: 40.16vw;
+        border-radius: 1.41vw;
+        border-width: 0.36vw 1.41vw 0.99vw 0.36vw;
+    }
+
+    .container-in {
+        gap: 8.7vw;
+    }
+
+    .calculator {
+        gap: 1.93vw;
+    }
+
+    .calculator-first-container {
+        column-gap: 1.25vw;
+        row-gap: 1.67vw;
+    }
+
+    .calculator-first {
+        width: 5.83vw;
+        height: 5.05vw;
+        font-size: 3.75vw;
+        padding: 2.34vw;
+        border-width: 0.31vw 0.63vw 0.83vw 0.31vw;
+    }
+
+    .zero {
+        width: 13.85vw;
+        height: 5.05vw;
+        font-size: 3.75vw;
+        padding: 2.34vw;
+        border-width: 0.31vw 0.63vw 0.83vw 0.31vw;
+    }
+
+    .dollars {
+        width: 44.84vw;
+        height: 32.66vw;
+        border: 0.89vw solid black;
+        border-radius: 2.45vw;
+        padding: 0.89vw;
+    }
+
+    .third-screen {
+        height: 56.25vw;
+    }
+
+    .small-circle-NC {
+        width: 0.47vw;
+        height: 0.47vw;
+    }
+
+    .forth-screen {
+        height: 56.25vw;
+    }
+
+    .brushes {
+        border-radius: 0.52vw;
+        padding: 0.99vw 0.05vw;
+        gap: 2.55vw;
+    }
+
+    .brush {
+        width: 8.59vw;
+        height: 8.59vw;
+        border-radius: 0.52vw;
+
+        img {
+            width: 7.55vw;
+            height: 7.55vw;
+        }
+    }
+    .stamp{
+        width: 7.55vw;
+        height: 7.55vw;
+    }
+
+    .tape {
+        gap: 0.42vw;
+        font-size: 1.51vw;
+    }
+
+    .info-track {
+        width: 17.08vw;
+        height: 9.64vw;
+        border: 0.16vw black solid;
+        border-radius: 0.52vw;
+        padding: 0.26vw;
+        font-size: 0.99vw;
+    }
+
+    .counter-qrcode {
+        gap: 0.42vw;
+    }
+
+    .snow-container {
+        height: 54.69vw;
+    }
+
+    .snow {
+        width: 4.69vw;
+        height: 3.7vw;
+    }
+
+    .truck {
+        img {
+            width: 64.17vw;
+        }
+    }
+
+    .left-wheel {
+        width: 10vw;
+    }
+
+    .right-wheel {
+        width: 10vw;
+    }
+
+    footer {
+        height: 6.15vw;
+        gap: 2.03vw;
+        padding-left: 1.3vw;
+    }
+
+    .name {
+        width: 46.77vw;
+    }
+
+    .hse {
+        width: 49vw;
+    }
+
+    .qrcode1 {
+        width: 9.48vw;
+        height: 9.48vw;
+    }
+
+    .qrcode2 {
+        width: 6.93vw;
+        height: 6.93vw;
+    }
+
+    .qrcode3 {
+        width: 7.81vw;
+        height: 7.81vw;
+    }
+
+    .qrcode4 {
+        width: 7.81vw;
+        height: 7.81vw;
+    }
+
+    .qrcode5 {
+        width: 6.04vw;
+        height: 6.04vw;
+    }
+
+    .qrcode6 {
+        width: 7.71vw;
+        height: 7.71vw;
+    }
+
+    .qrcodes {
+        width: 41.56vw;
+        height: 25vw;
+    }
+}
+
+
+@media (max-width: 1536px) {
+    .speed-counter{
+        font-size: 1.5vw;
+        gap: 1.11vw;
+    }
+    main {
+        height: 47.92vw;
+    }
+
+    .canvas {
+        height: 47.92vw;
+    }
+
+    .first-section {
+        gap: 8.46vw;
+
+        div {
+            img {
+                width: 11.59vw;
+                height: 10.16vw;
+            }
+        }
+    }
+
+    .circle {
+        width: 1.76vw;
+        height: 1.76vw;
+    }
+
+    .circle-ts {
+        width: 4.43vw;
+        height: 4.43vw;
+    }
+
+    .small-circle {
+        width: 0.46vw;
+        height: 0.46vw;
+    }
+
+    .numbers {
+        padding: 2.60vw 8.33vw;
+        gap: 2.60vw;
+
+        div {
+            width: 6.97vw;
+            height: 6.05vw;
+            border-top: 0.36vw;
+            border-right: 0.72vw;
+            border-bottom: 1.01vw;
+            border-left: 0.36vw;
+            font-size: 4.43vw;
+            border-color: black;
+            border-style: solid;
+        }
+    }
+
+    .wave-right {
+        width: 96.03vw;
+        height: 53.78vw;
+        top: -2%;
+    }
+
+    .wave-left {
+        width: 96.03vw;
+        height: 53.78vw;
+        top: -5%;
+    }
+
+    .second-screen {
+        height: 74.87vw;
+    }
+
+    .barcode {
+        height: 23.50vw;
+    }
+
+    .container-umbrella {
+        img {
+            width: 26.24vw;
+            height: 23.44vw;
+        }
+    }
+
+    .numbers-container {
+        width: 94.79vw;
+        height: 40.17vw;
+        border-radius: 1.43vw;
+        border-width: 0.36vw 1.43vw 1.01vw 0.36vw;
+    }
+
+    .container-in {
+        gap: 9.57vw;
+    }
+
+    .calculator {
+        gap: 2.08vw;
+    }
+
+    .calculator-first-container {
+        column-gap: 2.08vw;
+        row-gap: 2.60vw;
+    }
+
+    .calculator-first {
+        width: 5.86vw;
+        height: 5.08vw;
+        font-size: 3.74vw;
+        padding: 1.30vw;
+        border-width: 0.33vw 0.59vw 0.85vw 0.33vw;
+    }
+
+    .zero {
+        width: 13.87vw;
+        height: 5.08vw;
+        font-size: 3.74vw;
+        padding: 1.30vw;
+        border-width: 0.33vw 0.59vw 0.85vw 0.33vw;
+    }
+
+    .dollars {
+        width: 44.86vw;
+        height: 32.68vw;
+        border: 0.91vw solid black;
+        border-radius: 2.47vw;
+        padding: 0.98vw;
+    }
+
+    .third-screen {
+        height: 47.92vw;
+    }
+
+    .small-circle-NC {
+        width: 0.46vw;
+        height: 0.46vw;
+    }
+
+    .forth-screen {
+        height: 47.92vw;
+    }
+
+    .brushes {
+        border-radius: 0.52vw;
+        padding: 0.98vw;
+        gap: 1.89vw;
+        width: 9.64vw;
+        height: 45.57vw;
+    }
+
+    .brush {
+        width: 7.16vw;
+        height: 7.16vw;
+        border-radius: 0.59vw;
+
+        img {
+            width: 6.51vw;
+            height: 6.51vw;
+        }
+    }
+    .stamp{
+        width: 6.51vw;
+        height: 6.51vw;
+    }
+    .background-drawing {
+        width: 100vw;
+        height: 45.83vw;
+        background-image: url(../assets/photo/backgroundForDrawing2.svg);
+    }
+
+    .tape {
+        gap: 0.52vw;
+        font-size: 1.95vw;
+
+        img {
+            width: 3%;
+        }
+    }
+
+    .info-track {
+        width: 17.12vw;
+        height: 9.64vw;
+        border: 0.13vw black solid;
+        border-radius: 0.52vw;
+        padding: 0.46vw;
+        font-size: 0.98vw;
+    }
+
+    .counter-qrcode {
+        gap: 0.46vw;
+    }
+
+    .snow-container {
+        height: 45.77vw;
+        top: 2%;
+    }
+
+    .snow {
+        width: 4.69vw;
+        height: 3.71vw;
+    }
+
+    .truck {
+        top: 35%;
+
+        img {
+            width: 64.19vw;
+        }
+    }
+
+    .left-wheel {
+        top: 82%;
+        width: 9.57vw;
+    }
+
+    .right-wheel {
+        top: 82%;
+        width: 9.57vw;
+    }
+
+    footer {
+        height: 6.12vw;
+        gap: 1.89vw;
+        padding-left: 1.30vw;
+    }
+
+    .name {
+        width: 46.74vw;
+    }
+
+    .hse {
+        width: 48.83vw;
+    }
+
+    .qrcode1 {
+        width: 9.11vw;
+        height: 9.11vw;
+    }
+
+    .qrcode2 {
+        width: 6.84vw;
+        height: 6.84vw;
+    }
+
+    .qrcode3 {
+        width: 7.49vw;
+        height: 7.49vw;
+    }
+
+    .qrcode4 {
+        width: 7.49vw;
+        height: 7.49vw;
+    }
+
+    .qrcode5 {
+        width: 5.86vw;
+        height: 5.86vw;
+    }
+
+    .qrcode6 {
+        width: 7.49vw;
+        height: 7.49vw;
+    }
+
+    .qrcodes {
+        width: 41.54vw;
+        height: 25vw;
+        top: 35%;
+    }
+}
+
+@media (max-width: 1280px) {
+    .speed-counter{
+        width: 7.89vw;
+        height: 2.58vw;
+        font-size: 1.48vw;
+        gap: 1vw;
+    }
+    main {
+        height: 62.5vw;
+    }
+
+    .canvas {
+        height: 62.5vw;
+    }
+
+    .first-section {
+        gap: 3.67vw;
+
+        div {
+            img {
+                width: 11.56vw;
+                height: 10.16vw;
+            }
+        }
+    }
+
+    .circle {
+        width: 1.80vw;
+        height: 1.80vw;
+    }
+
+    .circle-ts {
+        width: 4.45vw;
+        height: 4.45vw;
+    }
+
+    .small-circle {
+        width: 0.63vw;
+        height: 0.63vw;
+    }
+
+    .numbers {
+        padding: 3.67vw 8.28vw;
+        gap: 2.58vw;
+
+        div {
+            width: 6.95vw;
+            height: 6.02vw;
+            border-top: 0.39vw;
+            border-right: 0.70vw;
+            border-bottom: 1.02vw;
+            border-left: 0.39vw;
+            font-size: 4.45vw;
+            border-color: black;
+            border-style: solid;
+        }
+    }
+
+    .wave-right {
+        width: 96.02vw;
+        height: 53.75vw;
+        top: 23%;
+    }
+
+    .wave-left {
+        width: 96.02vw;
+        height: 53.75vw;
+        top: 21%;
+    }
+
+    .second-screen {
+        height: 78.13vw;
+    }
+
+    .barcode {
+        height: 23.44vw;
+    }
+
+    .container-umbrella {
+        img {
+            width: 26.25vw;
+            height: 24.77vw;
+        }
+    }
+
+    .numbers-container {
+        width: 94.77vw;
+        height: 40.16vw;
+        border-radius: 1.41vw;
+        border-width: 0.39vw 1.41vw 1.02vw 0.39vw;
+    }
+
+    .container-in {
+        gap: 9.61vw;
+    }
+
+    .calculator {
+        gap: 2.11vw;
+    }
+
+    .calculator-first-container {
+        column-gap: 2.07vw;
+        row-gap: 2.66vw;
+    }
+
+    .calculator-first {
+        width: 5.86vw;
+        height: 5.08vw;
+        font-size: 3.75vw;
+        padding: 1.17vw;
+        border-width: 0.31vw 0.63vw 0.86vw 0.31vw;
+    }
+
+    .zero {
+        width: 13.83vw;
+        height: 5.08vw;
+        font-size: 3.75vw;
+        padding: 1.17vw;
+        border-width: 0.31vw 0.63vw 0.86vw 0.31vw;
+    }
+
+    .dollars {
+        width: 44.84vw;
+        height: 32.66vw;
+        border: 0.86vw solid black;
+        border-radius: 2.42vw;
+        padding: 0.78vw;
+    }
+
+    .third-screen {
+        height: 62.5vw;
+    }
+
+    .small-circle-NC {
+        width: 0.47vw;
+        height: 0.47vw;
+    }
+
+    .forth-screen {
+        height: 62.5vw;
+    }
+
+    .brushes {
+        border-radius: 0.55vw;
+        padding: 1.02vw 0.08vw;
+        gap: 2.58vw;
+        width: 12.03vw;
+        height: 55.23vw;
+    }
+
+    .brush {
+        width: 8.59vw;
+        height: 8.59vw;
+        border-radius: 0.55vw;
+
+        img {
+            width: 7.58vw;
+            height: 7.58vw;
+        }
+    }
+    .stamp{
+        width: 7.58vw;
+        height: 7.58vw;
+    }
+    .background-drawing {
+        width: 100vw;
+        height: 58vw;
+        background-image: url(../assets/photo/backgroundForDrawing.svg);
+    }
+
+    .tape {
+        gap: 0.47vw;
+        font-size: 1.88vw;
+
+        img {
+            width: 3%;
+        }
+    }
+
+    .info-track {
+        width: 17.66vw;
+        height: 9.92vw;
+        border: 0.16vw black solid;
+        border-radius: 0.55vw;
+        padding: 0.51vw;
+        font-size: 1.02vw;
+    }
+
+    .counter-qrcode {
+        gap: 0.47vw;
+    }
+
+    .snow-container {
+        height: 60vw;
+        top: 2%;
+    }
+
+    .snow {
+        width: 4.69vw;
+        height: 3.71vw;
+    }
+
+    .truck {
+        top: 48%;
+
+        img {
+            width: 66.33vw;
+        }
+    }
+
+    .left-wheel {
+        top: 85%;
+        width: 9.92vw;
+    }
+
+    .right-wheel {
+        top: 85%;
+        left: 81%;
+        width: 9.92vw;
+    }
+
+    footer {
+        height: 6.17vw;
+        gap: 1.88vw;
+        padding-left: 1.48vw;
+    }
+
+    .name {
+        width: 46.72vw;
+    }
+
+    .hse {
+        width: 49.92vw;
+    }
+
+    .qrcode1 {
+        width: 9.38vw;
+        height: 9.38vw;
+    }
+
+    .qrcode2 {
+        width: 7.03vw;
+        height: 7.03vw;
+    }
+
+    .qrcode3 {
+        width: 7.81vw;
+        height: 7.81vw;
+    }
+
+    .qrcode4 {
+        width: 7.81vw;
+        height: 7.81vw;
+    }
+
+    .qrcode5 {
+        width: 6.09vw;
+        height: 6.09vw;
+    }
+
+    .qrcode6 {
+        width: 7.81vw;
+        height: 7.81vw;
+    }
+
+    .qrcodes {
+        width: 41.54vw;
+        height: 25vw;
+        top: 48%;
+        left: 54%;
     }
 }
