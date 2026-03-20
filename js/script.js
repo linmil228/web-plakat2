@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    //кружки в 2 секции 1го экрана
     const containerOfCircles = document.querySelector('[data-js = "second-circle-container"]');
-    console.log(document.querySelector('[data-js="second-circle-container"]').getBoundingClientRect().width)
     function fillContainer() {
         let mobileScreen = false
         if (window.innerWidth < 1024) {
@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fillContainer();
     setInterval(paintCircle, 500);
 
+
+    //кружки 3 секции 1го экрана
     const thirdContainerOfCircles = document.querySelector('[data-js = "third-circle-container"]');
     const sizeTC = 85;
     const intensity = 0.3;
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     generateCircles();
 
 
-
+    //штрихкод-дождик
     const barcode = document.querySelector('[data-js = "barcode-container"]');
     let barCount = 40;
     const minWidth = 0.5;
@@ -128,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 700);
 
 
-
+    //последний экран
     const snowContainer = document.querySelector('[data-js = "fallen-snow"]');
     const wheels = document.querySelectorAll('[data-js = "wheel"]');
     let shiftPressed = false;
@@ -224,8 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         requestAnimationFrame(fall);
     }
-    setInterval(createSnow, 200);
+    setInterval(createSnow, 300);
 
+    //рисовашка
     const canvas = document.querySelector('[data-js="canvas"]');
     let drawing = false;
     let currentBrush = "";
@@ -276,9 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.appendChild(img);
     });
 
+    //калькулятор кнопки
     const buttonsCalc = document.querySelectorAll('.calculator-first');
     const buttonZeroCalc = document.querySelector('.zero');
-
+    const buttonInfoCalc = document.querySelector('[data-js="calc-info"]');
     buttonsCalc.forEach(buttonCalc => {
         buttonCalc.addEventListener("mousedown", () => {
             buttonCalc.style.backgroundColor = 'black';
@@ -303,14 +307,68 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonZeroCalc.style.color = 'black';
         buttonZeroCalc.style.borderColor = 'black';
     })
+
+    buttonInfoCalc.addEventListener("mousedown", () => {
+        buttonInfoCalc.style.backgroundColor = 'white';
+        buttonInfoCalc.style.color = 'black';
+        buttonInfoCalc.style.borderColor = 'black';
+    })
+    buttonInfoCalc.addEventListener("mouseup", () => {
+        buttonInfoCalc.style.backgroundColor = 'black';
+        buttonInfoCalc.style.color = 'white';
+        buttonInfoCalc.style.borderColor = 'white';
+    })
+
+    //волны первого экрана
     const waveRight = document.querySelector('[data-js="wave-right"]');
     const waveLeft = document.querySelector('[data-js="wave-left"]');
-    document.addEventListener("click", () => {
-        waveLeft.classList.add("hide")
-        waveRight.classList.add("hide")
-        setInterval(() => {
-            waveLeft.classList.remove("hide")
-            waveRight.classList.remove("hide")
+    let rightX = 0;
+    let leftX = 0;
+    let targetRightX = 0;
+    let targetLeftX = 0;
+    let animationId = null;
+    function animate() {
+        rightX += (targetRightX - rightX) * 0.1;
+        leftX += (targetLeftX - leftX) * 0.1;
+        if (waveRight) {
+            waveRight.style.transform = `translateX(${rightX}px)`
+        }
+        if (waveLeft) {
+            waveRight.style.transform = `translateX(${lefttX}px)`
+        }
+        animationId = requestAnimationFrame(animate);
+    }
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX;
+        const windowWidth = window.innerWidth;
+        targetRightX = (mouseX / windowWidth) * 200 - 100;
+        targetLeftX = (mouseX / windowWidth) * -200 + 100;
+    })
+    document.addEventListener('click', () => {
+        if (waveRight) {
+            targetRightX = window.innerWidth + 500;
+            waveRight.style.tranition = 'transform 0.5s ease-out'
+        }
+        if (waveLeft) {
+            targetLeftX = window.innerWidth - 500;
+            waveLeft.style.transition = 'transform 0.5s ease-out'
+        }
+        setTimeout(() => {
+            targetRightX = 0;
+            targetLeftX = 0;
+            setTimeout(() => {
+                if (waveRight) {
+                    waveRight.style.tranition = '';
+                }
+                if (waveLeft) {
+                    waveLeft.style.tranition = '';
+                }
+            }, 500)
         }, 10000)
+    })
+    animate();
+    window.addEventListener('resize', () =>{
+        targetLeftX = 0;
+        targetRightX = 0;
     })
 });

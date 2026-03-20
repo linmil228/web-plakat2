@@ -304,10 +304,34 @@ main {
     cursor: pointer;
 }
 
+.low-row {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.calculator-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px;
+    height: 97px;
+    background-color: black;
+    font-size: 72px;
+    font-family: "IBM Plex Mono";
+    font-weight: 900;
+    padding: 45px;
+    border-color: white;
+    color: white;
+    border-style: solid;
+    border-width: 6px 12px 16px 6px;
+    cursor: pointer;
+}
+
 .zero {
     display: flex;
     align-items: center;
-    width: 266px;
+    width: 247px;
     height: 97px;
     background-color: white;
     font-size: 72px;
@@ -469,6 +493,7 @@ main {
     justify-content: center;
     cursor: pointer;
 }
+
 .stamp {
     width: 165px;
     height: 165px;
@@ -654,7 +679,8 @@ footer {
     width: 798px;
     height: 480px;
 }
-.speed-counter{
+
+.speed-counter {
     width: 146px;
     height: 49px;
     display: flex;
@@ -670,7 +696,8 @@ footer {
     top: 59%;
     left: 20%;
 }
-.popbar{
+
+.popbar {
     position: absolute;
     width: 377px;
     height: 172px;
@@ -680,43 +707,53 @@ footer {
     z-index: 5;
     pointer-events: none;
 }
-@keyframes waveMove{
-    0%{
+
+@keyframes waveMove {
+    0% {
         transform: translateX(0px);
     }
-    50%{
+
+    50% {
         transform: translateX(40px);
     }
-    100%{
+
+    100% {
         transform: translateX(0px);
     }
 }
-@keyframes waveMove2{
-    0%{
+
+@keyframes waveMove2 {
+    0% {
         transform: translateX(0px);
     }
-    50%{
+
+    50% {
         transform: translateX(-40px);
     }
-    100%{
+
+    100% {
         transform: translateX(0px);
     }
 }
-.wave-left.hide{
+
+.wave-left.hide {
     transform: translateX(-200%);
     transition: transform 1.5s ease;
 }
-.wave-right.hide{
+
+.wave-right.hide {
     transform: translateX(200%);
     transition: transform 1.5s ease;
 }
+
 @media (max-width: 1919px) {
-    .speed-counter{
+    .speed-counter {
         width: 7.6vw;
         height: 2.55vw;
         font-size: 1.46vw;
         gap: 1vw;
     }
+
     main {
         height: 56.25vw;
     }
@@ -808,6 +845,10 @@ footer {
         row-gap: 1.67vw;
     }
 
+    .low-row {
+        gap: 1.25vw;
+    }
+
     .calculator-first {
         width: 5.83vw;
         height: 5.05vw;
@@ -816,8 +857,16 @@ footer {
         border-width: 0.31vw 0.63vw 0.83vw 0.31vw;
     }
 
+    .calculator-info {
+        width: 5.83vw;
+        height: 5.05vw;
+        font-size: 3.75vw;
+        padding: 2.34vw;
+        border-width: 0.31vw 0.63vw 0.83vw 0.31vw;
+    }
+
     .zero {
-        width: 13.85vw;
+        width: 12.85vw;
         height: 5.05vw;
         font-size: 3.75vw;
         padding: 2.34vw;
@@ -861,7 +910,8 @@ footer {
             height: 7.55vw;
         }
     }
-    .stamp{
+
+    .stamp {
         width: 7.55vw;
         height: 7.55vw;
     }
@@ -959,10 +1009,11 @@ footer {
 
 
 @media (max-width: 1536px) {
-    .speed-counter{
+    .speed-counter {
         font-size: 1.5vw;
         gap: 1.11vw;
     }
+
     main {
         height: 47.92vw;
     }
@@ -1061,7 +1112,19 @@ footer {
         row-gap: 2.60vw;
     }
 
+    .low-row {
+        gap: 2.08vw;
+    }
+
     .calculator-first {
+        width: 5.86vw;
+        height: 5.08vw;
+        font-size: 3.74vw;
+        padding: 1.30vw;
+        border-width: 0.33vw 0.59vw 0.85vw 0.33vw;
+    }
+
+    .calculator-info {
         width: 5.86vw;
         height: 5.08vw;
         font-size: 3.74vw;
@@ -1116,10 +1179,12 @@ footer {
             height: 6.51vw;
         }
     }
-    .stamp{
+
+    .stamp {
         width: 6.51vw;
         height: 6.51vw;
     }
+
     .background-drawing {
         width: 100vw;
         height: 45.83vw;
@@ -1228,12 +1293,13 @@ footer {
 }
 
 @media (max-width: 1280px) {
-    .speed-counter{
+    .speed-counter {
         width: 7.89vw;
         height: 2.58vw;
         font-size: 1.48vw;
         gap: 1vw;
     }
+
     main {
         height: 62.5vw;
     }
@@ -1332,7 +1398,19 @@ footer {
         row-gap: 2.66vw;
     }
 
+    .low-row {
+        gap: 2.07vw;
+    }
+
     .calculator-first {
+        width: 5.86vw;
+        height: 5.08vw;
+        font-size: 3.75vw;
+        padding: 1.17vw;
+        border-width: 0.31vw 0.63vw 0.86vw 0.31vw;
+    }
+
+    .calculator-info {
         width: 5.86vw;
         height: 5.08vw;
         font-size: 3.75vw;
@@ -1387,10 +1465,12 @@ footer {
             height: 7.58vw;
         }
     }
-    .stamp{
+
+    .stamp {
         width: 7.58vw;
         height: 7.58vw;
     }
+
     .background-drawing {
         width: 100vw;
         height: 58vw;

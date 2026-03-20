@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='css/style.css'>
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+    <link rel="icon" href="assets/photo/favicon.svg" />
+    <title>символы потребления</title>
 </head>
 
 <body>
@@ -53,19 +55,22 @@
             <div class="container-in">
                 <div class="calculator">
                     <div class="calculator-first-container">
-                        <div class="calculator-first" data-js="calculator1">1</div>
-                        <div class="calculator-first" data-js="calculator2">2</div>
-                        <div class="calculator-first" data-js="calculator3">3</div>
-                        <div class="calculator-first" data-js="calculator4">4</div>
-                        <div class="calculator-first" data-js="calculator5">5</div>
-                        <div class="calculator-first" data-js="calculator6">6</div>
-                        <div class="calculator-first" data-js="calculator7">7</div>
-                        <div class="calculator-first" data-js="calculator8">8</div>
-                        <div class="calculator-first" data-js="calculator9">9</div>
+                        <div class="calculator-first" data-js="calculator">1</div>
+                        <div class="calculator-first" data-js="calculator">2</div>
+                        <div class="calculator-first" data-js="calculator">3</div>
+                        <div class="calculator-first" data-js="calculator">4</div>
+                        <div class="calculator-first" data-js="calculator">5</div>
+                        <div class="calculator-first" data-js="calculator">6</div>
+                        <div class="calculator-first" data-js="calculator">7</div>
+                        <div class="calculator-first" data-js="calculator">8</div>
+                        <div class="calculator-first" data-js="calculator">9</div>
                     </div>
-                    <div class="zero">0</div>
+                    <div class="low-row">
+                        <div class="zero" data-js="calculator">0</div>
+                        <div class="calculator-info" data-js="calc-info">!</div>
+                    </div>
                 </div>
-                <div class="dollars"></div>
+                <div class="dollars" data-js="dollars-container"></div>
             </div>
         </div>
     </div>
