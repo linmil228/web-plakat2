@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const rotate = Math.random() * 360;
         snow.style.transform = `rotate(${rotate}deg)`
         snowContainer.appendChild(snow);
-        let speedSNOW = 2 + Math.random() * 3;
+        let speedSNOW = 2 + Math.random() * 2;
 
         function fall() {
             let vx = shiftPressed ? speedSNOW : 0;
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         requestAnimationFrame(fall);
     }
-    setInterval(createSnow, 600);
+    setInterval(createSnow, 200);
 
     const canvas = document.querySelector('[data-js="canvas"]');
     let drawing = false;
@@ -278,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const buttonsCalc = document.querySelectorAll('.calculator-first');
     const buttonZeroCalc = document.querySelector('.zero');
-    const buttonInfoCalc = document.querySelector('[data-js="calc-info"]');
 
     buttonsCalc.forEach(buttonCalc => {
         buttonCalc.addEventListener("mousedown", () => {
@@ -304,18 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonZeroCalc.style.color = 'black';
         buttonZeroCalc.style.borderColor = 'black';
     })
-
-    buttonInfoCalc.addEventListener("mousedown", () => {
-        buttonInfoCalc.style.backgroundColor = 'white';
-        buttonInfoCalc.style.color = 'black';
-        buttonInfoCalc.style.borderColor = 'black';
-    })
-    buttonInfoCalc.addEventListener("mouseup", () => {
-        buttonInfoCalc.style.backgroundColor = 'black';
-        buttonInfoCalc.style.color = 'white';
-        buttonInfoCalc.style.borderColor = 'white';
-    })
-
     const waveRight = document.querySelector('[data-js="wave-right"]');
     const waveLeft = document.querySelector('[data-js="wave-left"]');
     document.addEventListener("click", () => {
