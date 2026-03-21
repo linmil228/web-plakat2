@@ -5,7 +5,7 @@
 let glyph = "$0";
 let dots = /** @type {Dot[]} */ ([]);
 
-let rotateRad = -0.18;
+let rotateRad = 0;
 let dotSpacing = 14;
 let dotRadius = 5.0;
 let glyphScale = 0.9;
@@ -25,6 +25,8 @@ let scatterForce = 5;
 let scatterDecay = 0.98;
 let scatterTimer = 0;
 let scatterDuration = 60;
+
+let infoBlock = document.querySelector('[data-js="info"]')
 
 function calculateDotSize(containerWidth) {
     if (containerWidth < 360) {
@@ -54,11 +56,12 @@ function createCanvasInDollarsContainer() {
         
         p.setup = function () {
             const container = document.querySelector('[data-js="dollars-container"]');
-
+            let containerPaddings = parseInt(window.getComputedStyle(container).paddingLeft)
+            console.log(containerPaddings)
             dotSpacing = calculateSpacing(container.clientWidth);
             dotRadius = calculateDotSize(container.clientWidth);
 
-            const canvas = p.createCanvas(container.clientWidth, container.clientHeight);
+            const canvas = p.createCanvas(container.clientWidth - containerPaddings * 2, container.clientHeight- containerPaddings * 2);
             canvas.parent(container);
             canvas.style('display', 'block');
             p.pixelDensity(1);
@@ -141,10 +144,7 @@ function createCanvasInDollarsContainer() {
                 scatterTimer++;
                 if (scatterTimer >= scatterDuration) {
                     isScattering = false;
-                    if (dots.length === 0) {
-                        generateDots.call(p);
                     }
-                }
             }
 
             p.push();
@@ -243,21 +243,23 @@ document.addEventListener('DOMContentLoaded', function () {
     
     setTimeout(function() {
         const glyphButtons = document.querySelectorAll('[data-js="calculator"]');
+        glyphButtons.forEach((button) => {
+
+        })
         glyphButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 glyph = '$' + this.textContent.trim();
-                if (window.currentP5Instance && window.currentP5Instance.generateDots) {
-                    window.currentP5Instance.generateDots();
-                }
+                infoBlock.textContent = button.getAttribute('data-info')
+                infoBlock.classList.add('hidden')
+                window.currentP5Instance.generateDots();
             });
         });
         
         const scatterButton = document.querySelector('[data-js="calc-info"]');
         if (scatterButton) {
             scatterButton.addEventListener('click', function() {
-                if (window.currentP5Instance && window.currentP5Instance.startScattering) {
-                    window.currentP5Instance.startScattering();
-                }
+                window.currentP5Instance.startScattering();
+                infoBlock.classList.remove('hidden')
             });
         }
     }, 100);

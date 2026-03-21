@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     //кружки в 2 секции 1го экрана
     const containerOfCircles = document.querySelector('[data-js = "second-circle-container"]');
+    let mouseInside = false;
+    let intervalId = null;
     function fillContainer() {
         let mobileScreen = false
         if (window.innerWidth < 1024) {
@@ -28,27 +30,74 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < total; i++) {
             const circle = document.createElement("div");
             circle.classList.add("circle");
+            circle.addEventListener('mouseenter', function () {
+                if (mouseInside) {
+                    this.style.backgroundColor = 'black';
+                }
+            })
             containerOfCircles.appendChild(circle);
         }
     }
-    const circlesSC = document.getElementsByClassName('circle')
+
     function paintCircle() {
+        const circlesSC = document.getElementsByClassName('circle')
         if (circlesSC === 0) return;
         const randomIndex = Math.floor(Math.random() * circlesSC.length);
         const randomCircle = circlesSC[randomIndex];
         randomCircle.style.backgroundColor = 'black';
     }
-    window.addEventListener('resize', () => {
-        fillContainer();
+    function paintAllCircles(color) {
+        const circlesSC = document.getElementsByClassName('circle');
+        for (let i = 0; i < circlesSC.length; i++) {
+            circlesSC[i].style.backgroundColor = color;
+        }
+    }
+    function startPainting() {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        intervalId = setInterval(paintCircle, 300);
+    }
+    function stopPainting() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
+    containerOfCircles.addEventListener('mouseenter', () => {
+        mouseInside = true;
+        stopPainting();
+        paintAllCircles('#FFEE5A');
     })
+    containerOfCircles.addEventListener('mouseleave', () => {
+        mouseInside = false;
+        paintAllCircles('');
+        startPainting();
+    });
     fillContainer();
-    setInterval(paintCircle, 500);
+    startPainting();
+    window.addEventListener('resize', () => {
+        const isMouseInside = mouseInside;
+        if (isMouseInside) {
+            mouseInside = false;
+            stopPainting();
+        }
+        fillContainer();
+        if (isMouseInside) {
+            mouseInside = true;
+            paintAllCircles('#FFEE5A');
+
+        } else {
+            startPainting();
+        }
+    })
 
 
     //кружки 3 секции 1го экрана
     const thirdContainerOfCircles = document.querySelector('[data-js = "third-circle-container"]');
     const sizeTC = 85;
-    const intensity = 0.3;
+    let intensity = 0.3;
+    let mouseInsideThird = false;
 
     function generateCircles() {
         const widthTC = thirdContainerOfCircles.clientWidth;
@@ -56,8 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const containerArea = widthTC * heightTC;
         const circleArea = Math.PI * (sizeTC / 2) ** 2;
-
+        if (heightTC<400){
+            intensity = 2;
+        }
         const countTC = Math.floor((containerArea / circleArea) * intensity);
+
+        thirdContainerOfCircles.innerHTML = "";
+
         for (let i = 0; i < countTC; i++) {
             const circleTC = document.createElement("div");
             circleTC.classList.add("circle-ts");
@@ -65,11 +119,44 @@ document.addEventListener("DOMContentLoaded", () => {
             const x = Math.random() * widthTC;
             const y = Math.random() * heightTC;
 
-            circleTC.style.left = `${x}px`
-            circleTC.style.top = `${y}px`
+            circleTC.style.left = `${x}px`;
+            circleTC.style.top = `${y}px`;
             thirdContainerOfCircles.appendChild(circleTC);
         }
     }
+
+    function createCircleAtMouse(x, y) {
+        const circleTC = document.createElement("div");
+        circleTC.classList.add("circle-ts");
+        circleTC.style.left = `${x - sizeTC / 2}px`;
+        circleTC.style.top = `${y - sizeTC / 2}px`;
+
+        thirdContainerOfCircles.appendChild(circleTC);
+
+    }
+
+    thirdContainerOfCircles.addEventListener('mousemove', (e) => {
+        if (!mouseInsideThird) return;
+
+        const rect = thirdContainerOfCircles.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        createCircleAtMouse(mouseX, mouseY);
+    });
+
+    thirdContainerOfCircles.addEventListener('mouseenter', () => {
+        mouseInsideThird = true;
+    });
+
+    thirdContainerOfCircles.addEventListener('mouseleave', () => {
+        mouseInsideThird = false;
+    });
+
+    window.addEventListener('resize', () => {
+        generateCircles();
+    });
+
     generateCircles();
 
 
@@ -172,6 +259,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 50);
         }
     });
+    let modal = document.querySelector('[data-js="modal"]')
+    let ok = document.querySelector('[data-js="ok-btn"]')
+    modal.style.display = 'none';
     let currentQrIndex = 0;
     function createSnow() {
         const snow = document.createElement("img");
@@ -193,6 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (counter >= 6) {
                     special = true;
                     counterText.textContent = 6;
+                    modal.hidden = false;
+                    modal.style.display = 'flex';
+                    ok.addEventListener('click', () => {
+                        modal.style.display = 'none';
+                        modal.hidden = true;
+                    })
                 }
             })
         }
@@ -232,52 +328,102 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.querySelector('[data-js="canvas"]');
     let drawing = false;
     let currentBrush = "";
+    let lastStampPoint = null;
     const brushes = document.querySelectorAll('[data-js="brush"]');
-    const popbar = document.querySelectorAll('[data-js="popbar"]');
+    const popbar = document.querySelector('[data-js="popbar"]');
+    const stampSpacing = 36;
+    const stampLifetime = 2400;
+
+    function createStamp(clientX, clientY) {
+        if (!currentBrush) {
+            return;
+        }
+
+        const rect = canvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        const img = document.createElement("img");
+        img.src = currentBrush;
+        img.className = "stamp";
+        img.style.left = `${x}px`;
+        img.style.top = `${y}px`;
+        canvas.appendChild(img);
+
+        window.setTimeout(() => {
+            img.remove();
+        }, stampLifetime);
+    }
 
     brushes.forEach(brush => {
         brush.addEventListener("click", () => {
             brushes.forEach(b => {
                 b.parentElement.style.backgroundColor = "";
                 b.parentElement.style.border = "";
-                popbar.hidden = true;
             });
-            const rectBrush = brush.getBoundingClientRect();
-            popbar.style.left = rectBrush.right + 10 + "px";
-            popbar.style.top = rectBrush.top + "px";
+            popbar.hidden = false;
+            popbar.textContent = brush.getAttribute('data-info');
+            const rectBrush = brush;
+            popbar.style.left = rectBrush.getBoundingClientRect().right + "px";
+            // let diff = (popbar.getBoundingClientRect().bottom - rectBrush.getBoundingClientRect().bottom)
+            popbar.style.top = rectBrush.getBoundingClientRect().top - document.querySelector('.third-screen').getBoundingClientRect().top + "px";
+            // let diff = (popbar.getBoundingClientRect().bottom - rectBrush.getBoundingClientRect().bottom)
+            popbar.style.top = popbar.getBoundingClientRect().top - diff + "px";
             currentBrush = brush.src;
             brush.parentElement.style.backgroundColor = "#FFEE5A";
             brush.parentElement.style.border = "3px solid black";
         });
     });
-    canvas.addEventListener("mouseleave", () => {
-        drawing = false;
-    });
-    canvas.addEventListener("mousedown", () => {
+    canvas.addEventListener("pointerdown", (e) => {
+        if (!currentBrush) {
+            return;
+        }
+
         drawing = true;
+        lastStampPoint = { x: e.clientX, y: e.clientY };
+        canvas.setPointerCapture(e.pointerId);
+        createStamp(e.clientX, e.clientY);
     });
-    canvas.addEventListener("mouseup", () => {
-        drawing = false;
-    });
-    let moveCounter = 0;
-    canvas.addEventListener("mousemove", (e) => {
+    canvas.addEventListener("pointermove", (e) => {
         if (!drawing || !currentBrush) {
-            return
-        };
-        moveCounter++;
-        if (moveCounter % 3 !== 0) {
-            return
-        };
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const img = document.createElement("img");
-        img.src = currentBrush;
-        img.className = "stamp";
-        img.style.left = (x - 20) + "px";
-        img.style.top = (y - 20) + "px";
-        canvas.appendChild(img);
+            return;
+        }
+
+        if (!lastStampPoint) {
+            lastStampPoint = { x: e.clientX, y: e.clientY };
+            createStamp(e.clientX, e.clientY);
+            return;
+        }
+
+        const deltaX = e.clientX - lastStampPoint.x;
+        const deltaY = e.clientY - lastStampPoint.y;
+        const distance = Math.hypot(deltaX, deltaY);
+
+        if (distance < stampSpacing) {
+            return;
+        }
+
+        const steps = Math.floor(distance / stampSpacing);
+        for (let i = 1; i <= steps; i++) {
+            const progress = (i * stampSpacing) / distance;
+            createStamp(
+                lastStampPoint.x + deltaX * progress,
+                lastStampPoint.y + deltaY * progress
+            );
+        }
+
+        lastStampPoint = { x: e.clientX, y: e.clientY };
     });
+    function stopDrawing(e) {
+        drawing = false;
+        lastStampPoint = null;
+
+        if (e.pointerId !== undefined && canvas.hasPointerCapture(e.pointerId)) {
+            canvas.releasePointerCapture(e.pointerId);
+        }
+    }
+    canvas.addEventListener("pointerup", stopDrawing);
+    canvas.addEventListener("pointerleave", stopDrawing);
+    canvas.addEventListener("pointercancel", stopDrawing);
 
     //калькулятор кнопки
     const buttonsCalc = document.querySelectorAll('.calculator-first');
@@ -322,6 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //волны первого экрана
     const waveRight = document.querySelector('[data-js="wave-right"]');
     const waveLeft = document.querySelector('[data-js="wave-left"]');
+    let waves = [waveLeft, waveRight]
     let rightX = 0;
     let leftX = 0;
     let targetRightX = 0;
@@ -331,44 +478,41 @@ document.addEventListener("DOMContentLoaded", () => {
         rightX += (targetRightX - rightX) * 0.1;
         leftX += (targetLeftX - leftX) * 0.1;
         if (waveRight) {
-            waveRight.style.transform = `translateX(${rightX}px)`
+            waveRight.style.transform = `translateX(${rightX}px)`;
         }
         if (waveLeft) {
-            waveRight.style.transform = `translateX(${lefttX}px)`
+            waveLeft.style.transform = `translateX(${leftX}px)`;
         }
         animationId = requestAnimationFrame(animate);
     }
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX;
-        const windowWidth = window.innerWidth;
-        targetRightX = (mouseX / windowWidth) * 200 - 100;
-        targetLeftX = (mouseX / windowWidth) * -200 + 100;
-    })
-    document.addEventListener('click', () => {
-        if (waveRight) {
-            targetRightX = window.innerWidth + 500;
-            waveRight.style.tranition = 'transform 0.5s ease-out'
-        }
-        if (waveLeft) {
-            targetLeftX = window.innerWidth - 500;
-            waveLeft.style.transition = 'transform 0.5s ease-out'
-        }
-        setTimeout(() => {
-            targetRightX = 0;
-            targetLeftX = 0;
+    waves.forEach((wave) => {
+        let originalPosition = wave.getBoundingClientRect().left;
+        wave.addEventListener("pointerdown", () => {
+            wave.classList.add("active");
             setTimeout(() => {
-                if (waveRight) {
-                    waveRight.style.tranition = '';
-                }
-                if (waveLeft) {
-                    waveLeft.style.tranition = '';
-                }
-            }, 500)
-        }, 10000)
+                wave.classList.remove("active");
+            }, 10000)
+        });
     })
-    animate();
-    window.addEventListener('resize', () =>{
-        targetLeftX = 0;
-        targetRightX = 0;
+    //кнопки первого экрана
+    const mainButtons = document.querySelectorAll('[data-js="numberMainScreen"]');
+    mainButtons.forEach(mainButton => {
+        mainButton.addEventListener("mousedown", () => {
+            mainButton.style.backgroundColor = 'white';
+        })
+        mainButton.addEventListener("mouseup", () => {
+            mainButton.style.backgroundColor = '#FFEE5A';
+        })
+        let ifClick = false;
+        let originalText = mainButton.textContent;
+        mainButton.addEventListener("click", () => {
+            if (ifClick) {
+                mainButton.textContent = originalText;
+                ifClick = false;
+            } else {
+                mainButton.textContent = "!";
+                ifClick = true;
+            }
+        })
     })
 });

@@ -28,19 +28,19 @@
         <div class="third-section" data-js="third-circle-container"></div>
         <div class="forth-section">
             <div class="numbers">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-                <div>7</div>
-                <div>8</div>
-                <div>9</div>
+                <div data-js="numberMainScreen">1</div>
+                <div data-js="numberMainScreen">2</div>
+                <div data-js="numberMainScreen">3</div>
+                <div data-js="numberMainScreen">4</div>
+                <div data-js="numberMainScreen">5</div>
+                <div data-js="numberMainScreen">6</div>
+                <div data-js="numberMainScreen">7</div>
+                <div data-js="numberMainScreen">8</div>
+                <div data-js="numberMainScreen">9</div>
             </div>
         </div>
-        <img src="assets/photo/wave.svg" class="wave-right" data-js="wave-right">
-        <img src="assets/photo/wave2.svg" class="wave-left" data-js="wave-left">
+        <img src="assets/photo/wave.svg" class="wave-right animation" data-js="wave-right">
+        <img src="assets/photo/wave2.svg" class="wave-left animation" data-js="wave-left">
     </main>
     <div class="second-screen">
         <div class="barcode" data-js="barcode-container"></div>
@@ -55,33 +55,45 @@
             <div class="container-in">
                 <div class="calculator">
                     <div class="calculator-first-container">
-                        <div class="calculator-first" data-js="calculator">1</div>
-                        <div class="calculator-first" data-js="calculator">2</div>
-                        <div class="calculator-first" data-js="calculator">3</div>
-                        <div class="calculator-first" data-js="calculator">4</div>
-                        <div class="calculator-first" data-js="calculator">5</div>
-                        <div class="calculator-first" data-js="calculator">6</div>
-                        <div class="calculator-first" data-js="calculator">7</div>
-                        <div class="calculator-first" data-js="calculator">8</div>
-                        <div class="calculator-first" data-js="calculator">9</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 1">1</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 2">2</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 3">3</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 4">4</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 5">5</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 6">6</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 7">7</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 8">8</div>
+                        <div class="calculator-first" data-js="calculator" data-info="ляля ляля ляля 9">9</div>
                     </div>
                     <div class="low-row">
-                        <div class="zero" data-js="calculator">0</div>
+                        <div class="zero" data-js="calculator" data-info="ляля ляля ляля 0">0</div>
                         <div class="calculator-info" data-js="calc-info">!</div>
                     </div>
                 </div>
-                <div class="dollars" data-js="dollars-container"></div>
+                <div class="dollars" data-js="dollars-container">
+                    <p data-js="info" class="info-block hidden">ляля ляля ляля 0</p>
+                </div>
             </div>
         </div>
     </div>
     <div class="third-screen">
-        <div class="popbar" data-js="popbar" hiddens></div>
+        <div class="popbar" data-js="popbar" hidden></div>
         <div class="brushes">
-            <div class="brush" data-js="brush-container"><img src="assets/photo/brush1.svg" data-js="brush"></div>
-            <div class="brush" data-js="brush-container"><img src="assets/photo/brush2.svg" data-js="brush"></div>
-            <div class="brush" data-js="brush-container"><img src="assets/photo/brush3.svg" data-js="brush"></div>
-            <div class="brush" data-js="brush-container"><img src="assets/photo/brush4.svg" data-js="brush"></div>
-            <div class="brush" data-js="brush-container"><img src="assets/photo/brush5.svg" data-js="brush"></div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush1.svg" data-js="brush" 
+                data-info="Символ биологической опасности (биохазард) специально разрабатывали так, чтобы он&nbsp;запоминался с&nbsp;первого взгляда и&nbsp;был уникальным.">
+            </div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush2.svg" data-js="brush" 
+                data-info="Снежинка с&nbsp;рыбой&nbsp;&mdash; заморозка сразу после вылова, а&nbsp;с&nbsp;яблоком&nbsp;&mdash; глубокая шоковая заморозка, сохраняющая витамины.">
+            </div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush3.svg" data-js="brush"
+                 data-info="Разбитый бокал&nbsp;&mdash; знак &laquo;Осторожно, хрупкое&raquo;. Предупреждает, что груз боится ударов и&nbsp;опрокидывания.">
+            </div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush4.svg" data-js="brush"
+                 data-info="Знак переработки указывает, что упаковка или товар подлежат вторичной переработке. Цифра внутри обозначает тип пластика для сортировки.">
+            </div>
+            <div class="brush" data-js="brush-container"><img src="assets/photo/brush5.svg" data-js="brush"
+                 data-info="Это знак CE (европейское соответствие). Стилизованная буква &laquo;Е&raquo; в&nbsp;круге означает, что товар безопасен и&nbsp;разрешен к&nbsp;продаже в&nbsp;Евросоюзе.">
+            </div>
         </div>
         <img src="assets/photo/figure1.svg" class="second-figure">
         <img src="assets/photo/figure2.svg" class="first-figure">
@@ -165,6 +177,14 @@
         </div>
         <img src="assets/photo/wheel.svg" class="left-wheel" data-js="wheel">
         <img src="assets/photo/wheel.svg" class="right-wheel" data-js="wheel">
+        <div class="modal" data-js="modal" hidden>
+            <div class="text">
+                <p>Все QR-коды собраны!</p>
+                <p>Ты можешь ехать развозить</p>
+                <p>доставку на ctrl.</p>
+            </div>
+            <div class="ok-btn" data-js="ok-btn">окей</div>
+        </div>
     </div>
     <footer>
         <img src="assets/photo/name.svg" class="name">
