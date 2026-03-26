@@ -662,6 +662,9 @@ footer {
         height: fit-content;
     }
 }
+.footer-run{
+    display: none;
+}
 
 .canvas {
     width: 100%;
@@ -784,7 +787,7 @@ footer {
 .popbar {
     position: absolute;
     width: 377px;
-    height: 172px;   
+    height: 172px;
     font-size: 19px;
     background-image: url(../assets/photo/popbar.svg);
     z-index: 100;
@@ -1059,6 +1062,9 @@ footer {
         height: 6.15vw;
         gap: 2.03vw;
         padding-left: 1.3vw;
+        img{
+            width: 46.77vw;
+        }
     }
 
     .name {
@@ -2188,6 +2194,7 @@ footer {
         height: 13.89vw;
         border-radius: 0.78vw;
         border-width: 0.2vw;
+
         img {
             height: 13.11vw;
             width: 13.11vw;
@@ -2229,11 +2236,27 @@ footer {
     .footer-phone {
         width: 100%;
         height: 12.5vw;
-        display: block;
         position: absolute;
         z-index: 100;
-        background-image: url(../assets/photo/footer1-phone.svg);
         top: 2%;
+        display: flex;
+        flex-direction: row;
+        background-color: black;
+    }
+
+    .run {
+        width: 100%;
+        animation: scroll 10s linear infinite;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
     }
 
     .info-track {
@@ -2321,10 +2344,17 @@ footer {
     footer {
         height: 12.5vw;
         z-index: 100;
-        background-image: url(../assets/photo/footer2-phone.svg);
 
         img {
             display: none;
         }
+    }
+    .footer-run{
+        display: block;
+        width: 100%;
+        animation: scroll 10s linear infinite;
+    }
+    .usual-footer{
+        display: none;
     }
 }
