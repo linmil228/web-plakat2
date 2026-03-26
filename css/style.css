@@ -5,6 +5,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'IBM Plex Mono' !important;
 }
 
 body {
@@ -23,6 +24,7 @@ main {
     flex-direction: column;
     position: relative;
     overflow-x: clip;
+    touch-action: pan-down;
 }
 
 .first-section {
@@ -202,6 +204,7 @@ main {
     align-items: center;
     position: relative;
     overflow-x: clip;
+    touch-action: pan-down;
 }
 
 .barcode {
@@ -391,7 +394,6 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 1;
-    font-family: 'IBM Plex Mono';
     font-size: 1.5vw;
 
     &:is(.hidden) {
@@ -419,6 +421,7 @@ main {
     align-items: center;
     position: relative;
     overflow-x: clip;
+    touch-action: pan-down;
 }
 
 
@@ -441,6 +444,7 @@ main {
     align-items: center;
     position: relative;
     z-index: 1;
+    touch-action: pan-down;
 }
 
 .first-figure {
@@ -743,7 +747,6 @@ footer {
     gap: 20px;
     position: absolute;
     font-size: 28px;
-    font-family: 'IBM Plex Mono';
     align-items: center;
     justify-content: center;
     top: 59%;
@@ -781,8 +784,7 @@ footer {
 .popbar {
     position: absolute;
     width: 377px;
-    height: 172px;
-    font-family: 'IBM Plex Mono';
+    height: 172px;   
     font-size: 19px;
     background-image: url(../assets/photo/popbar.svg);
     z-index: 100;
@@ -819,7 +821,6 @@ footer {
     align-items: center;
     border-radius: 10px;
     border: 3px solid black;
-    font-family: 'IBM Plex Mono';
     font-size: 19px;
     z-index: 100;
     gap: 40px;
@@ -836,7 +837,6 @@ footer {
     color: white;
     background-color: black;
     padding: 10px;
-    font-family: 'IBM Plex Mono';
     cursor: pointer;
 }
 
@@ -2038,7 +2038,7 @@ footer {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 500px) {
     .speed-counter {
         width: 13.61vw;
         height: 4.44vw;

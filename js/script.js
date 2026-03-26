@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(createSnow, 300);
 
     //рисовашка
-   const canvas = document.querySelector('[data-js="canvas"]');
+    const canvas = document.querySelector('[data-js="canvas"]');
     let drawing = false;
     let currentBrush = "";
     let lastStampPoint = null;
@@ -354,59 +354,88 @@ document.addEventListener("DOMContentLoaded", () => {
         }, stampLifetime);
     }
 
-let activeBrush = null;
+    let activeBrush = null;
 
-function positionPopbar(brush) {
-    const rectBrush = brush.getBoundingClientRect();
-    const thirdScreenRect = document.querySelector('.third-screen').getBoundingClientRect();
-    const offset = window.innerWidth * 0.02;
+    function positionPopbar(brush) {
+        const rectBrush = brush.getBoundingClientRect();
+        const thirdScreenRect = document.querySelector('.third-screen').getBoundingClientRect();
+        const offset = window.innerWidth * 0.02;
 
-    let left; 
-    let top;
+        let left;
+        let top;
+        let transform = "";
+        let textTransform = "none";
 
-    if (window.innerWidth < 360) {
-        left = rectBrush.left - thirdScreenRect.left;
-        top = rectBrush.top - thirdScreenRect.top - popbar.offsetHeight - 10;
-        popbar.style.transform = "rotate(-5deg)";
-    } else if (window.innerWidth < 768) {
-        left = rectBrush.left - thirdScreenRect.left;
-        top = rectBrush.bottom - thirdScreenRect.top + 10;
-        popbar.style.transform = "none";
-    } else {
-        left = rectBrush.right - thirdScreenRect.left + offset;
-        top = rectBrush.bottom - thirdScreenRect.top - popbar.offsetHeight;
-        popbar.style.transform = "none";
+        if (window.innerWidth < 500) {
+            left = rectBrush.left - thirdScreenRect.left;
+            top = rectBrush.top - thirdScreenRect.top - popbar.offsetHeight - 10;
+            transform = "rotate(-5deg)";
+        } else if (window.innerWidth < 768) {
+            left = rectBrush.left - thirdScreenRect.left;
+            top = rectBrush.bottom - thirdScreenRect.top + 10;
+            transform = "none";
+        } else {
+            left = rectBrush.right - thirdScreenRect.left + offset;
+            top = rectBrush.bottom - thirdScreenRect.top - popbar.offsetHeight;
+            transform = "none";
+        }
+
+        const popbarWidth = popbar.offsetWidth;
+        const screenWidth = window.innerWidth;
+
+        if (left + popbarWidth > screenWidth) {
+            left = rectBrush.left - thirdScreenRect.left - popbarWidth - offset;
+
+            if (window.innerWidth < 500) {
+                transform = "scaleX(-1) rotate(5deg)";
+                textTransform = "scaleX(-1)";
+            } else {
+                transform = "scaleX(-1)";
+                textTransform = "scaleX(-1)";
+            }
+        }
+
+        popbar.style.left = left + "px";
+        popbar.style.top = top + "px";
+        popbar.style.transform = transform;
+
+        if (!popbar.querySelector('span')) {
+            const span = document.createElement('span');
+            span.textContent = popbar.textContent;
+            popbar.textContent = '';
+            popbar.appendChild(span);
+        }
+
+        const textSpan = popbar.querySelector('span');
+        textSpan.style.display = "inline-block";
+        textSpan.style.transform = textTransform;
     }
 
-    popbar.style.left = left + "px";
-    popbar.style.top = top + "px";
-}
+    brushes.forEach(brush => {
+        brush.addEventListener("click", () => {
+            brushes.forEach(b => {
+                b.parentElement.style.backgroundColor = "";
+                b.parentElement.style.border = "";
+            });
 
-brushes.forEach(brush => {
-    brush.addEventListener("click", () => {
-        brushes.forEach(b => {
-            b.parentElement.style.backgroundColor = "";
-            b.parentElement.style.border = "";
+            popbar.hidden = false;
+            popbar.textContent = brush.getAttribute('data-info');
+
+            currentBrush = brush.src;
+
+            brush.parentElement.style.backgroundColor = "#FFEE5A";
+            brush.parentElement.style.border = "3px solid black";
+
+            activeBrush = brush;
+            positionPopbar(brush);
         });
-
-        popbar.hidden = false;
-        popbar.textContent = brush.getAttribute('data-info');
-
-        currentBrush = brush.src;
-
-        brush.parentElement.style.backgroundColor = "#FFEE5A";
-        brush.parentElement.style.border = "3px solid black";
-
-        activeBrush = brush;
-        positionPopbar(brush);
     });
-});
 
-window.addEventListener("resize", () => {
-    if (activeBrush) {
-        positionPopbar(activeBrush);
-    }
-});
+    window.addEventListener("resize", () => {
+        if (activeBrush) {
+            positionPopbar(activeBrush);
+        }
+    });
     canvas.addEventListener("pointerdown", (e) => {
         if (!currentBrush) {
             return;
