@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < total; i++) {
             const circle = document.createElement("div");
             circle.classList.add("circle");
-            circle.addEventListener('mouseenter', function () {
+            circle.addEventListener('pointerenter', function () {
                 if (mouseInside) {
                     this.style.backgroundColor = 'black';
                 }
@@ -64,12 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
             intervalId = null;
         }
     }
-    containerOfCircles.addEventListener('mouseenter', () => {
+    containerOfCircles.addEventListener('pointerenter', () => {
         mouseInside = true;
         stopPainting();
         paintAllCircles('#FFEE5A');
     })
-    containerOfCircles.addEventListener('mouseleave', () => {
+    containerOfCircles.addEventListener('pointerleave', () => {
         mouseInside = false;
         paintAllCircles('');
         startPainting();
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const containerArea = widthTC * heightTC;
         const circleArea = Math.PI * (sizeTC / 2) ** 2;
-        if (heightTC<400){
+        if (window.innerWidth < 400) {
             intensity = 2;
         }
         const countTC = Math.floor((containerArea / circleArea) * intensity);
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    thirdContainerOfCircles.addEventListener('mousemove', (e) => {
+    thirdContainerOfCircles.addEventListener('pointermove', (e) => {
         if (!mouseInsideThird) return;
 
         const rect = thirdContainerOfCircles.getBoundingClientRect();
@@ -145,11 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
         createCircleAtMouse(mouseX, mouseY);
     });
 
-    thirdContainerOfCircles.addEventListener('mouseenter', () => {
+    thirdContainerOfCircles.addEventListener('pointerenter', () => {
         mouseInsideThird = true;
     });
 
-    thirdContainerOfCircles.addEventListener('mouseleave', () => {
+    thirdContainerOfCircles.addEventListener('pointerleave', () => {
         mouseInsideThird = false;
     });
 
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(createSnow, 300);
 
     //рисовашка
-    const canvas = document.querySelector('[data-js="canvas"]');
+   const canvas = document.querySelector('[data-js="canvas"]');
     let drawing = false;
     let currentBrush = "";
     let lastStampPoint = null;
@@ -354,22 +354,59 @@ document.addEventListener("DOMContentLoaded", () => {
         }, stampLifetime);
     }
 
-    brushes.forEach(brush => {
-        brush.addEventListener("click", () => {
-            brushes.forEach(b => {
-                b.parentElement.style.backgroundColor = "";
-                b.parentElement.style.border = "";
-            });
-            popbar.hidden = false;
-            popbar.textContent = brush.getAttribute('data-info');
-            const rectBrush = brush;
-            popbar.style.left = rectBrush.getBoundingClientRect().right + "px";
-            popbar.style.top = rectBrush.getBoundingClientRect().top - document.querySelector('.third-screen').getBoundingClientRect().top + "px";
-            currentBrush = brush.src;
-            brush.parentElement.style.backgroundColor = "#FFEE5A";
-            brush.parentElement.style.border = "3px solid black";
+let activeBrush = null;
+
+function positionPopbar(brush) {
+    const rectBrush = brush.getBoundingClientRect();
+    const thirdScreenRect = document.querySelector('.third-screen').getBoundingClientRect();
+    const offset = window.innerWidth * 0.02;
+
+    let left; 
+    let top;
+
+    if (window.innerWidth < 360) {
+        left = rectBrush.left - thirdScreenRect.left;
+        top = rectBrush.top - thirdScreenRect.top - popbar.offsetHeight - 10;
+        popbar.style.transform = "rotate(-5deg)";
+    } else if (window.innerWidth < 768) {
+        left = rectBrush.left - thirdScreenRect.left;
+        top = rectBrush.bottom - thirdScreenRect.top + 10;
+        popbar.style.transform = "none";
+    } else {
+        left = rectBrush.right - thirdScreenRect.left + offset;
+        top = rectBrush.bottom - thirdScreenRect.top - popbar.offsetHeight;
+        popbar.style.transform = "none";
+    }
+
+    popbar.style.left = left + "px";
+    popbar.style.top = top + "px";
+}
+
+brushes.forEach(brush => {
+    brush.addEventListener("click", () => {
+        brushes.forEach(b => {
+            b.parentElement.style.backgroundColor = "";
+            b.parentElement.style.border = "";
         });
+
+        popbar.hidden = false;
+        popbar.textContent = brush.getAttribute('data-info');
+
+        currentBrush = brush.src;
+
+        brush.parentElement.style.backgroundColor = "#FFEE5A";
+        brush.parentElement.style.border = "3px solid black";
+
+        activeBrush = brush;
+        positionPopbar(brush);
     });
+});
+
+window.addEventListener("resize", () => {
+    if (activeBrush) {
+        positionPopbar(activeBrush);
+    }
+});
     canvas.addEventListener("pointerdown", (e) => {
         if (!currentBrush) {
             return;
@@ -427,12 +464,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonZeroCalc = document.querySelector('.zero');
     const buttonInfoCalc = document.querySelector('[data-js="calc-info"]');
     buttonsCalc.forEach(buttonCalc => {
-        buttonCalc.addEventListener("mousedown", () => {
+        buttonCalc.addEventListener("pointerdown", () => {
             buttonCalc.style.backgroundColor = 'black';
             buttonCalc.style.color = 'white';
             buttonCalc.style.borderColor = 'white';
         })
-        buttonCalc.addEventListener("mouseup", () => {
+        buttonCalc.addEventListener("pointerup", () => {
             buttonCalc.style.backgroundColor = 'white';
             buttonCalc.style.color = 'black';
             buttonCalc.style.borderColor = 'black';
@@ -440,23 +477,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })
 
-    buttonZeroCalc.addEventListener("mousedown", () => {
+    buttonZeroCalc.addEventListener("pointerdown", () => {
         buttonZeroCalc.style.backgroundColor = 'black';
         buttonZeroCalc.style.color = 'white';
         buttonZeroCalc.style.borderColor = 'white';
     })
-    buttonZeroCalc.addEventListener("mouseup", () => {
+    buttonZeroCalc.addEventListener("pointerup", () => {
         buttonZeroCalc.style.backgroundColor = 'white';
         buttonZeroCalc.style.color = 'black';
         buttonZeroCalc.style.borderColor = 'black';
     })
 
-    buttonInfoCalc.addEventListener("mousedown", () => {
+    buttonInfoCalc.addEventListener("pointerdown", () => {
         buttonInfoCalc.style.backgroundColor = 'white';
         buttonInfoCalc.style.color = 'black';
         buttonInfoCalc.style.borderColor = 'black';
     })
-    buttonInfoCalc.addEventListener("mouseup", () => {
+    buttonInfoCalc.addEventListener("pointerup", () => {
         buttonInfoCalc.style.backgroundColor = 'black';
         buttonInfoCalc.style.color = 'white';
         buttonInfoCalc.style.borderColor = 'white';
@@ -494,10 +531,10 @@ document.addEventListener("DOMContentLoaded", () => {
     //кнопки первого экрана
     const mainButtons = document.querySelectorAll('[data-js="numberMainScreen"]');
     mainButtons.forEach(mainButton => {
-        mainButton.addEventListener("mousedown", () => {
+        mainButton.addEventListener("pointerdown", () => {
             mainButton.style.backgroundColor = 'white';
         })
-        mainButton.addEventListener("mouseup", () => {
+        mainButton.addEventListener("pointerup", () => {
             mainButton.style.backgroundColor = '#FFEE5A';
         })
         let ifClick = false;

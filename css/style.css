@@ -99,6 +99,7 @@ main {
     height: 100% !important;
     border-radius: 50%;
     border: 1px solid black;
+    cursor: pointer;
 
 }
 
@@ -116,6 +117,7 @@ main {
     height: 85px;
     border-radius: 50%;
     background-color: #FFEE5A;
+    cursor: pointer;
 }
 
 .forth-section {
@@ -389,6 +391,8 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 1;
+    font-family: 'IBM Plex Mono';
+    font-size: 1.5vw;
 
     &:is(.hidden) {
         opacity: 0;
@@ -547,6 +551,7 @@ main {
     transform-origin: center;
     animation: stampFadeOut 0.4s ease forwards;
     animation-delay: 2s;
+    cursor: pointer;
 }
 
 .tape {
@@ -780,7 +785,7 @@ footer {
     font-family: 'IBM Plex Mono';
     font-size: 19px;
     background-image: url(../assets/photo/popbar.svg);
-    z-index: 5;
+    z-index: 100;
     pointer-events: none;
     padding: 20px 30px;
     background-size: cover;
@@ -833,6 +838,10 @@ footer {
     padding: 10px;
     font-family: 'IBM Plex Mono';
     cursor: pointer;
+}
+
+.footer-phone {
+    display: none;
 }
 
 @media (max-width: 1919px) {
@@ -1867,6 +1876,10 @@ footer {
         height: 133.33vw;
     }
 
+    .canvas {
+        height: 133.33vw;
+    }
+
     .brushes {
         rotate: 90deg;
         left: 28%;
@@ -1905,12 +1918,16 @@ footer {
 
     .first-figure {
         rotate: 90deg;
-        top: 10%;
+        top: -4%;
+        left: 7%;
+        scale: 1.5;
     }
 
     .third-figure {
         rotate: 90deg;
-        top: 60%;
+        top: 52%;
+        left: 41%;
+        scale: 1.4;
     }
 
     .forth-screen {
@@ -2017,6 +2034,7 @@ footer {
         height: 17.32vw;
         font-size: 1.82vw;
         padding: 1.3vw 2.86vw;
+        background-image: url('../assets/photo/popbar2.svg');
     }
 }
 
@@ -2085,16 +2103,228 @@ footer {
             border-style: solid;
         }
     }
-    .wave-left{
+
+    .wave-left {
         top: 80%
     }
-    .wave-right{
+
+    .wave-right {
         top: 80%
     }
-    .second-screen{
+
+    .second-screen {
         height: 444.44vw;
     }
-    .barcode{
+
+    .barcode {
         height: 222.22vw;
+    }
+
+    .container-umbrella {
+        top: 48%;
+    }
+
+    .numbers-container {
+        top: 51%;
+        height: 183vw;
+        background-image: url(../assets/photo/bg-numbers-phone.svg);
+    }
+
+    .container-in {
+        flex-direction: column-reverse;
+    }
+
+    .dollars {
+        width: 80.56vw;
+        height: 83.33vw;
+    }
+
+    .calculator-first {
+        border-width: 1.11vw 2.22vw 3.06vw 1.11vw;
+        width: 20.56vw;
+        height: 17.78vw;
+        font-size: 13.06vw;
+    }
+
+    .calculator-info {
+        border-width: 1.11vw 2.22vw 3.06vw 1.11vw;
+        width: 20.56vw;
+        height: 17.78vw;
+        font-size: 13.06vw;
+    }
+
+    .zero {
+        border-width: 1.11vw 2.22vw 3.06vw 1.11vw;
+        width: 43.5vw;
+        height: 17.78vw;
+        font-size: 13.06vw;
+    }
+
+    .third-screen {
+        height: 222.22vw;
+    }
+
+    .forth-screen {
+        height: 222.22vw;
+        overflow: hidden;
+    }
+
+    .brushes {
+        left: -17%;
+        height: 100%;
+        top: -54%;
+        width: 17.66vw;
+        gap: 6.94vw;
+        padding: 4.04vw 2.6vw;
+
+    }
+
+    .canvas {
+        height: 222.22vw;
+    }
+
+    .brush {
+        width: 13.89vw;
+        height: 13.89vw;
+        border-radius: 0.78vw;
+        border-width: 0.2vw;
+        img {
+            height: 13.11vw;
+            width: 13.11vw;
+        }
+    }
+
+    .stamp {
+        height: 13.11vw;
+        width: 13.11vw;
+    }
+
+    .background-drawing {
+        background-image: url(../assets/photo/bg-draw-phone.svg);
+        height: 196.22vw;
+        width: 100vw;
+    }
+
+    .second-figure {
+        scale: 1.8;
+    }
+
+    .first-figure {
+        scale: 1.8;
+    }
+
+    .third-figure {
+        scale: 2.5;
+    }
+
+    .tape {
+        font-size: 3.88vw;
+    }
+
+    .snow-container {
+        height: 220.5vw;
+        top: 1%;
+    }
+
+    .footer-phone {
+        width: 100%;
+        height: 12.5vw;
+        display: block;
+        position: absolute;
+        z-index: 100;
+        background-image: url(../assets/photo/footer1-phone.svg);
+        top: 2%;
+    }
+
+    .info-track {
+        width: 97.78vw;
+        height: 25.28vw;
+        font-size: 3.89vw;
+        left: 1%;
+        top: 8%;
+    }
+
+    .truck {
+        top: 74%;
+        left: -12%;
+
+        img {
+            width: 114.44vw;
+            height: 55.83vw;
+        }
+    }
+
+    .left-wheel {
+        width: 16.67vw;
+        height: 16.67vw;
+        top: 92%;
+        left: 6%;
+    }
+
+    .right-wheel {
+        width: 16.67vw;
+        height: 16.67vw;
+        top: 92%;
+        left: 77%;
+    }
+
+    .snow {
+        width: 16.67vw;
+        height: 16.67vw;
+    }
+
+    .qrcode1 {
+        width: 16.94vw;
+        height: 16.94vw;
+    }
+
+    .qrcode2 {
+        width: 11.94vw;
+        height: 11.94vw;
+    }
+
+    .qrcode3 {
+        width: 13.89vw;
+        height: 13.89vw;
+    }
+
+    .qrcode4 {
+        width: 13.89vw;
+        height: 13.89vw;
+    }
+
+    .qrcode5 {
+        width: 10.56vw;
+        height: 10.56vw;
+    }
+
+    .qrcode6 {
+        width: 13.33vw;
+        height: 13.33vw;
+    }
+
+    .qrcodes {
+        width: 74.17vw;
+        height: 44.44vw;
+        top: 75%;
+        left: 29%;
+    }
+
+    .popbar {
+        width: 38.07vw;
+        height: 17.32vw;
+        font-size: 1.82vw;
+        padding: 1.3vw 2.86vw;
+        background-image: url('../assets/photo/popbar.svg');
+    }
+
+    footer {
+        height: 12.5vw;
+        z-index: 100;
+        background-image: url(../assets/photo/footer2-phone.svg);
+
+        img {
+            display: none;
+        }
     }
 }
